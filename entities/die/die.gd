@@ -1,49 +1,100 @@
 class_name Die
 extends KinematicBody2D
 
-enum State {IDLE, ROLLING}
+const PERSPECTIVE_SCALE: float = 0.003
+const BOUNCE_FRICTION: float = 0.8
+const AIR_FRICTION: float = 300.0
+const ENERGY_TRANSFER: float = 0.3
 
-export(float) var speed_min: float = 2500.0
-export(float) var speed_max: float = 3000.0
-export(float) var friction: float = 2000.0
-export(float) var bounce_min: float = 0.99
-export(float) var bounce_max: float = 1.1
-export(float) var bounce_decay: float = 0.01
-export(float) var energy_transfer: float = 0.5
+export(float) var gravity: float = 20.0
+export(float) var bounciness: float = 0.7
 
-var state: int = State.IDLE
+var height: float = 0.0
+var v_velocity: float = 0.0
 var velocity: Vector2 = Vector2.ZERO
-var bounce_power: float = bounce_min
 
-# Process the die's state machine:
+onready var sprite: Sprite = $Sprite
+
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("ui_accept"):
+		v_velocity = rand_range(10.0, 12.0)
+		var angle: float = rand_range(0.0, TAU)
+		velocity = Vector2(cos(angle), sin(angle)) * rand_range(2500.0, 3000.0)
+		update_frame()
+		update_height()
+
+
 func _physics_process(delta: float) -> void:
-	match state:
-		State.ROLLING:
-			process_rolling(delta)
+	var is_grounded: bool = get_bounce(delta)
+	update_height()
+	
+	if is_grounded and not is_stopped():
+		velocity *= BOUNCE_FRICTION
+		update_frame()
+	
+	apply_velocity(delta)
 
 
-# Roll the die:
-func roll() -> void:
-	randomize()
-	var angle: float = rand_range(0.0, TAU)
-	velocity = Vector2(cos(angle), sin(angle)) * rand_range(speed_min, speed_max)
-	bounce_power = bounce_max
-	state = State.ROLLING
+# Gets whether the die is stopped:
+func is_stopped() -> bool:
+	return v_velocity == 0.0 and height == 0.0 and velocity == Vector2.ZERO
 
 
-# Process the rolling state:
-func process_rolling(delta: float) -> void:
+# Bounces the die on the floor and returns whether it is grounded:
+func get_bounce(delta: float) -> bool:
+	if height == 0.0 and v_velocity == 0.0:
+		return true
+	
+	v_velocity -= gravity * delta
+	height += v_velocity
+	
+	if height <= 0.0:
+		height = 0.0
+		v_velocity *= -bounciness
+		
+		if abs(v_velocity) < 1.0:
+			v_velocity = 0.0
+		
+		return true
+	
+	return false
+
+
+func apply_velocity(delta: float) -> void:
+	if velocity == Vector2.ZERO:
+		return
+	
 	var collision: KinematicCollision2D = move_and_collide(velocity * delta)
 	
 	if not collision:
-		velocity = velocity.move_toward(Vector2.ZERO, friction * delta)
+		velocity = velocity.move_toward(Vector2.ZERO, AIR_FRICTION * delta)
+		
+		if velocity.length_squared() < 1.0:
+			velocity = Vector2.ZERO
+		
 		return
 	
 	var collider: Object = collision.collider
 	
 	if collider is Node and collider.is_in_group("dice"):
-		collider.velocity += velocity * energy_transfer
+		var exchange: Vector2 = velocity * ENERGY_TRANSFER
+		collider.velocity += exchange
+		velocity -= exchange
+		collider.update_frame()
 	
-	velocity = velocity.bounce(collision.normal) * bounce_power
-	bounce_power = max(bounce_min, bounce_power - bounce_decay)
+	velocity = velocity.bounce(collision.normal)
 	velocity = move_and_slide(velocity)
+	update_frame()
+
+
+# Update the die's visual height:
+func update_height() -> void:
+	var scale: float = 1.0 + height * PERSPECTIVE_SCALE
+	sprite.position.y = -height
+	sprite.scale = Vector2(scale, scale)
+
+
+# Set the die to a random frame and rotation:
+func update_frame() -> void:
+	sprite.frame = randi() % 8
+	sprite.rotation = float(randi() % 3) * (TAU / 3.0)
