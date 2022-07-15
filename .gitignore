@@ -4,19 +4,19 @@ desktop.ini
 Thumbs.db
 
 # IDE:
-.idea
-.vscode
+.idea/*
+.vscode/*
 *.code-workspace
 *.sublime-project
 *.sublime-workspace
 *.suo
 
 # Godot Engine:
-.import/
-.mono/
+.import/*
+.mono/*
 data_*/
 *.TMP
 *.translation
 
 # Ignore
-ignore/
+ignore/*
