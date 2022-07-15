@@ -1,0 +1,22 @@
+# OS:
+.DS_Store
+desktop.ini
+Thumbs.db
+
+# IDE:
+.idea
+.vscode
+*.code-workspace
+*.sublime-project
+*.sublime-workspace
+*.suo
+
+# Godot Engine:
+.import/
+.mono/
+data_*/
+*.TMP
+*.translation
+
+# Ignore
+ignore/
