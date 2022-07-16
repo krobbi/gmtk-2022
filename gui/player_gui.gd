@@ -4,6 +4,10 @@ onready var speech_bubble: Sprite = $textBox
 onready var chip_sprites: Array = $Chips.get_children()
 onready var credit_sprites: Array = $Score.get_children()
 
+
+func _ready():
+	display_credit(0)
+
 func display_higher_lower(is_higher: bool) -> void:
 	if is_higher:
 		speech_bubble.texture = preload("res://resources/textures/speech_box_higher.png")
@@ -28,4 +32,8 @@ func display_credit(value: int) -> void:
 		else:
 			credit_sprites[i].texture = preload("res://resources/textures/negative_coin.png")
 		
-		credit_sprites[i].visible = i <= abs_value
+		credit_sprites[i].visible = i < abs_value
+
+
+func _on_TextureButton_pressed():
+	print("PENIS") # Replace with function body.
