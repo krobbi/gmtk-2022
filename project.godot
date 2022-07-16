@@ -9,6 +9,11 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Particles2D",
+"class": "BounceEffect",
+"language": "GDScript",
+"path": "res://entities/bounce_effect/bounce_effect.gd"
+}, {
 "base": "KinematicBody2D",
 "class": "Die",
 "language": "GDScript",
@@ -30,6 +35,7 @@ _global_script_classes=[ {
 "path": "res://entities/floating_number_spawner/floating_number_spawner.gd"
 } ]
 _global_script_class_icons={
+"BounceEffect": "",
 "Die": "",
 "DieSpawer": "",
 "FloatingNumber": "",

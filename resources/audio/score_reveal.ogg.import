@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/score_reveal.ogg-ae8d575204597bf70149c32d04ea9420.oggstr"
+
+[deps]
+
+source_file="res://resources/audio/score_reveal.ogg"
+dest_files=[ "res://.import/score_reveal.ogg-ae8d575204597bf70149c32d04ea9420.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

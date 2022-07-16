@@ -12,6 +12,8 @@ const STANDARD_DEVIATION: float = 4.0
 
 var floating_numbers: Array = []
 
+onready var reveal_player: AudioStreamPlayer = $RevealPlayer
+
 func _process(_delta: float) -> void:
 	if floating_numbers.empty():
 		set_process(false)
@@ -103,3 +105,4 @@ func merge_numbers() -> void:
 
 func _on_last_despawned(number: int) -> void:
 	emit_signal("number_rolled", number)
+	reveal_player.play()

@@ -3,6 +3,8 @@ extends KinematicBody2D
 
 enum State {IDLE, SPAWNING, ROLLING}
 
+const BounceEffectScene: PackedScene = preload("res://entities/bounce_effect/bounce_effect.tscn")
+
 const PERSPECTIVE_SCALE: float = 0.003
 const GRAVITY: float = 20.0
 const BOUNCINESS: float = 0.6
@@ -43,6 +45,7 @@ func _physics_process(delta: float) -> void:
 			if is_grounded and not is_stopped():
 				velocity *= BOUNCE_FRICTION
 				update_frame()
+				spawn_particles()
 			
 			apply_velocity(delta, is_grounded)
 
@@ -106,8 +109,10 @@ func apply_velocity(delta: float, is_grounded: bool) -> void:
 		velocity -= transferred_velocity
 		collider.update_frame()
 		collider.play_clack()
+		collider.spawn_particles()
 	
 	play_clack()
+	spawn_particles()
 	EventBus.emit_signal("shake_camera_request", velocity.length() / SHAKE_FACTOR)
 	velocity = velocity.bounce(collision.normal) * wall_power
 	wall_power = max(WALL_POWER_MIN, wall_power - WALL_POWER_DECAY)
@@ -170,6 +175,13 @@ func play_clack() -> void:
 	
 	clack_player.pitch_scale = rand_range(0.9, 1.1)
 	clack_player.play()
+
+
+func spawn_particles() -> void:
+	var effect: BounceEffect = BounceEffectScene.instance()
+	effect.position = position
+	effect.position.y -= 1.0
+	get_parent().add_child(effect)
 
 
 # Force stop the die if it has been rolling for too long:
