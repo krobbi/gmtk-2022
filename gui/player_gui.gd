@@ -39,3 +39,4 @@ func display_credit(value: int) -> void:
 
 func _on_TextureButton_pressed():
 	emit_signal("open_bio")
+	$Bio/NewInfoIcon.hide()
