@@ -1,5 +1,7 @@
 extends Control
 
+signal open_bio()
+
 onready var speech_bubble: Sprite = $textBox
 onready var chip_sprites: Array = $Chips.get_children()
 onready var credit_sprites: Array = $Score.get_children()
@@ -36,4 +38,4 @@ func display_credit(value: int) -> void:
 
 
 func _on_TextureButton_pressed():
-	print("PENIS") # Replace with function body.
+	emit_signal("open_bio")
