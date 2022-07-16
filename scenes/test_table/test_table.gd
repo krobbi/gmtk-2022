@@ -18,3 +18,7 @@ func _on_game_manager_round_finished(was_won: bool) -> void:
 		print("You won!")
 	else:
 		print("You lost!")
+
+
+func _on_odds_selected() -> void:
+	pass
