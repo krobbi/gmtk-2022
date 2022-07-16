@@ -8,7 +8,8 @@ extends Control
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	var casino_gui = $CasinoGui
+	var casino_gui = get_node("../CasinoGui")
+	casino_gui.connect("open_gui", self, "_on_open_bio")
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
