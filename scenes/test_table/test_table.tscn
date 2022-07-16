@@ -61,7 +61,7 @@ mana = 10
 
 [node name="Control2" parent="." instance=ExtResource( 9 )]
 
-[node name="Control3" parent="." instance=ExtResource( 11 )]
+[node name="CasinoGui" parent="." instance=ExtResource( 11 )]
 margin_left = 1184.0
 margin_top = 856.0
 margin_right = 1184.0
@@ -69,5 +69,6 @@ margin_bottom = 856.0
 
 [connection signal="higher_lower_chosen" from="GameManager" to="PlayerGui" method="display_higher_lower"]
 [connection signal="number_changed" from="GameManager" to="FloatingNumber" method="set_number"]
+[connection signal="player_count_changed" from="GameManager" to="CasinoGui" method="display_player_count"]
 [connection signal="round_count_changed" from="GameManager" to="PlayerGui" method="display_chips"]
 [connection signal="roll_finished" from="DieSpawner" to="FloatingNumberSpawner" method="spawn_numbers"]

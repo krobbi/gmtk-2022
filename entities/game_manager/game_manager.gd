@@ -4,6 +4,8 @@ extends Node
 signal higher_lower_chosen(is_higher)
 signal number_changed(number)
 signal round_count_changed(round_count)
+signal player_changed(player_name)
+signal player_count_changed(player_count)
 signal round_finished(was_won)
 
 enum AI_STRATEGY {GOOD, BAD, RANDOM}
@@ -13,6 +15,8 @@ export(NodePath) var floating_number_spawner_path: NodePath = NodePath()
 export(NodePath) var mana_bar_path: NodePath = NodePath()
 export(NodePath) var odds_selector_path: NodePath = NodePath()
 
+var opponent_queue: Array = []
+var current_opponent: String = "sue"
 var round_count: int = 3
 var number: int = 14
 var mana: int = 15
@@ -39,6 +43,23 @@ func _ready() -> void:
 	
 	if error and odds_selector.is_connected("odds_hovered", self, "_on_odds_hovered"):
 		odds_selector.disconnect("odds_hovered", self, "_on_odds_hovered")
+
+
+# Gets the opponent queue for a night:
+func get_opponent_queue(night_number: int) -> Array:
+	match night_number:
+		1:
+			return ["sue", "albert", "johnny"]
+		2:
+			return ["sue"]
+		3:
+			return ["sue"]
+		4:
+			return ["sue"]
+		5:
+			return ["sue"]
+		_:
+			return ["sue"]
 
 
 # Gets the AI's current strategy:
@@ -70,12 +91,26 @@ func get_ai_choice() -> bool:
 			return bool(randi() % 2)
 
 
-# Begins a new game of higher or lower:
-func begin_game() -> void:
-	round_count = 3
-	emit_signal("round_count_changed", round_count)
+# Begins a new night:
+func begin_night(night_number: int) -> void:
 	mana = 20
 	mana_bar.changeMana(mana)
+	opponent_queue = get_opponent_queue(night_number)
+	begin_game()
+
+
+# Begins a new game of higher or lower:
+func begin_game() -> void:
+	if opponent_queue.empty():
+		return # TODO: End night.
+	
+	current_opponent = opponent_queue[0]
+	opponent_queue.remove(0)
+	emit_signal("player_changed", current_opponent)
+	emit_signal("player_count_changed", opponent_queue.size())
+	
+	round_count = 3
+	emit_signal("round_count_changed", round_count)
 	number = 14
 	
 	emit_signal("number_changed", number)
@@ -105,7 +140,7 @@ func finish_round(was_won: bool) -> void:
 	if round_count > 0:
 		begin_round()
 	else:
-		pass # TODO: End night or get next opponent.
+		begin_game()
 
 
 func _on_odds_hovered(new_odds: int) -> void:
