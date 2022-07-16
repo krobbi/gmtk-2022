@@ -5,11 +5,17 @@ signal despawned(number)
 
 const TEXTURE: Texture = preload("res://resources/textures/numbers.png")
 
-var number: int = 0
+export(int) var number: int = 0 setget set_number
+
 var sprites: Array = []
 
 onready var animation_player: AnimationPlayer = $AnimationPlayer
 onready var area: Area2D = $Area
+
+func _ready() -> void:
+	if number > 0:
+		set_number(number)
+
 
 func set_number(value: int) -> void:
 	number = value
