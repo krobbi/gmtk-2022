@@ -23,11 +23,17 @@ _global_script_classes=[ {
 "class": "FloatingNumber",
 "language": "GDScript",
 "path": "res://entities/floating_number/floating_number.gd"
+}, {
+"base": "YSort",
+"class": "FloatingNumberSpawner",
+"language": "GDScript",
+"path": "res://entities/floating_number_spawner/floating_number_spawner.gd"
 } ]
 _global_script_class_icons={
 "Die": "",
 "DieSpawer": "",
-"FloatingNumber": ""
+"FloatingNumber": "",
+"FloatingNumberSpawner": ""
 }
 
 [application]

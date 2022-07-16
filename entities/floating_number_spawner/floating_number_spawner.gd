@@ -1,3 +1,4 @@
+class_name FloatingNumberSpawner
 extends YSort
 
 signal number_rolled(number)
@@ -7,6 +8,7 @@ const FloatingNumberScene: PackedScene = preload(
 )
 
 const CENTER: Vector2 = Vector2(960.0, 540.0)
+const STANDARD_DEVIATION: float = 4.0
 
 var floating_numbers: Array = []
 
@@ -30,6 +32,17 @@ func _process(_delta: float) -> void:
 		
 		last.despawn()
 		floating_numbers.clear()
+
+
+func get_weighted_roll(mean: int) -> int:
+	var rng: RandomNumberGenerator = RandomNumberGenerator.new()
+	var result: int = 0
+	
+	while result < 4 or result > 24:
+		rng.randomize()
+		result = int(round(rng.randfn(mean, STANDARD_DEVIATION)))
+	
+	return result
 
 
 func get_rolls(target: int, dice: int, sides: int) -> PoolIntArray:
@@ -60,7 +73,7 @@ func get_rolls(target: int, dice: int, sides: int) -> PoolIntArray:
 
 
 func spawn_numbers(positions: Array) -> void:
-	var rolls: PoolIntArray = get_rolls(14, positions.size(), 6)
+	var rolls: PoolIntArray = get_rolls(get_weighted_roll(14), positions.size(), 6)
 	
 	for i in range(positions.size()):
 		var floating_number: FloatingNumber = FloatingNumberScene.instance()
