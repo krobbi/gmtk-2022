@@ -18,7 +18,9 @@ func display_higher_lower(is_higher: bool) -> void:
 
 
 func display_player(value: String) -> void:
-	face_button.texture_normal = load("res://resources/textures/npcs/%s.png" % value)
+	face_button.texture_normal = load(
+			"res://resources/textures/npcs/%s.png" % GameData.get_profile_key(value)
+	)
 
 
 func display_chips(value: int) -> void:

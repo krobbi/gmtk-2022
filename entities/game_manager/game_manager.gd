@@ -3,6 +3,7 @@ extends Node
 
 signal higher_lower_chosen(is_higher)
 signal number_changed(number)
+signal balance_changed(balance)
 signal round_count_changed(round_count)
 signal player_changed(player_name)
 signal player_count_changed(player_count)
@@ -17,6 +18,7 @@ export(NodePath) var odds_selector_path: NodePath = NodePath()
 
 var opponent_queue: Array = []
 var current_opponent: String = "sue"
+var night_number: int = 1
 var round_count: int = 3
 var number: int = 14
 var mana: int = 15
@@ -45,8 +47,8 @@ func _ready() -> void:
 		odds_selector.disconnect("odds_hovered", self, "_on_odds_hovered")
 
 
-# Gets the opponent queue for a night:
-func get_opponent_queue(night_number: int) -> Array:
+# Gets the opponent queue for the current night:
+func get_opponent_queue() -> Array:
 	match night_number:
 		1:
 			return ["sue", "albert", "johnny"]
@@ -64,7 +66,7 @@ func get_opponent_queue(night_number: int) -> Array:
 
 # Gets the AI's current strategy:
 func get_ai_strategy() -> int:
-	return AI_STRATEGY.RANDOM
+	return GameData.get_strategy(current_opponent, night_number)
 
 
 # Gets whether the AI chooses higher on its strategy:
@@ -92,10 +94,11 @@ func get_ai_choice() -> bool:
 
 
 # Begins a new night:
-func begin_night(night_number: int) -> void:
+func begin_night(night_number_val: int) -> void:
+	night_number = night_number_val
 	mana = 20
 	mana_bar.changeMana(mana)
-	opponent_queue = get_opponent_queue(night_number)
+	opponent_queue = get_opponent_queue()
 	begin_game()
 
 
@@ -107,6 +110,7 @@ func begin_game() -> void:
 	current_opponent = opponent_queue[0]
 	opponent_queue.remove(0)
 	emit_signal("player_changed", current_opponent)
+	emit_signal("balance_changed", GameData.get_total_balance(current_opponent, night_number))
 	emit_signal("player_count_changed", opponent_queue.size())
 	
 	round_count = 3
@@ -135,6 +139,8 @@ func select_odds() -> void:
 
 # Finishes the round with a win or loss:
 func finish_round(was_won: bool) -> void:
+	GameData.add_balance(current_opponent, night_number, 1 if was_won else -1)
+	emit_signal("balance_changed", GameData.get_total_balance(current_opponent, night_number))
 	emit_signal("round_finished", was_won)
 	
 	if round_count > 0:
