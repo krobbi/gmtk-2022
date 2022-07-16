@@ -1,4 +1,4 @@
 extends Node2D
 
 func _ready() -> void:
-	$GameManager.begin_game()
+	$GameManager.begin_night(1)
