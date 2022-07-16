@@ -14,6 +14,7 @@ onready var despawn_player: AudioStreamPlayer = $DespawnPlayer
 func _physics_process(_delta: float) -> void:
 	if dice.empty():
 		set_physics_process(false)
+		return
 	
 	for die in dice:
 		if not die.is_stopped():
