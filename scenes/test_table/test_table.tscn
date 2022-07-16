@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://entities/die_spawner/die_spawner.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/test_table/test_table.gd" type="Script" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://gui/manabar.tscn" type="PackedScene" id=8]
 [ext_resource path="res://gui/oddsSelector.tscn" type="PackedScene" id=9]
 [ext_resource path="res://gui/player_gui.tscn" type="PackedScene" id=10]
+[ext_resource path="res://gui/casino_gui.tscn" type="PackedScene" id=11]
 
 [node name="TestTable" type="Node2D"]
 script = ExtResource( 2 )
@@ -59,6 +60,12 @@ margin_bottom = 996.0
 mana = 10
 
 [node name="Control2" parent="." instance=ExtResource( 9 )]
+
+[node name="Control3" parent="." instance=ExtResource( 11 )]
+margin_left = 1184.0
+margin_top = 856.0
+margin_right = 1184.0
+margin_bottom = 856.0
 
 [connection signal="higher_lower_chosen" from="GameManager" to="PlayerGui" method="display_higher_lower"]
 [connection signal="number_changed" from="GameManager" to="FloatingNumber" method="set_number"]
