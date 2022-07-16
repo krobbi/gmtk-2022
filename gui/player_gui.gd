@@ -25,7 +25,7 @@ func display_chips(value: int) -> void:
 
 
 func display_credit(value: int) -> void:
-	var is_positive: bool = value >= 0
+	var is_positive: bool = value > 0
 	var abs_value: int = int(abs(value))
 	
 	for i in range(15):
