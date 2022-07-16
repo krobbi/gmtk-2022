@@ -1,6 +1,8 @@
 class_name Die
 extends KinematicBody2D
 
+enum State {IDLE, SPAWNING, ROLLING}
+
 const PERSPECTIVE_SCALE: float = 0.003
 const GRAVITY: float = 20.0
 const BOUNCINESS: float = 0.6
@@ -16,23 +18,30 @@ const WALL_POWER_MIN: float = 0.9
 const WALL_POWER_MAX: float = 1.2
 const WALL_POWER_DECAY: float = 0.05
 
+var state: int = State.IDLE
 var height: float = 0.0
 var v_velocity: float = 0.0
 var velocity: Vector2 = Vector2.ZERO
 var wall_power: float = WALL_POWER_MIN
 
 onready var frame_timer: Timer = $FrameTimer
+onready var animation_player: AnimationPlayer = $AnimationPlayer
 onready var sprite: Sprite = $Sprite
 
 func _physics_process(delta: float) -> void:
-	var is_grounded: bool = get_bounce(delta)
-	update_height()
-	
-	if is_grounded and not is_stopped():
-		velocity *= BOUNCE_FRICTION
-		update_frame()
-	
-	apply_velocity(delta, is_grounded)
+	match state:
+		State.SPAWNING:
+			if not animation_player.is_playing():
+				roll()
+		State.ROLLING:
+			var is_grounded: bool = get_bounce(delta)
+			update_height()
+			
+			if is_grounded and not is_stopped():
+				velocity *= BOUNCE_FRICTION
+				update_frame()
+			
+			apply_velocity(delta, is_grounded)
 
 
 # Bounces the die on the floor and returns whether it is grounded:
@@ -57,7 +66,10 @@ func get_bounce(delta: float) -> bool:
 
 # Gets whether the die is stopped:
 func is_stopped() -> bool:
-	return v_velocity == 0.0 and height == 0.0 and velocity == Vector2.ZERO
+	return (
+			state == State.ROLLING and v_velocity == 0.0 and height == 0.0
+			and velocity == Vector2.ZERO
+	)
 
 
 # Applies the die's velocity:
@@ -96,6 +108,20 @@ func apply_velocity(delta: float, is_grounded: bool) -> void:
 	update_frame()
 
 
+# Spawns the die:
+func spawn() -> void:
+	update_frame()
+	animation_player.play("spawn")
+	state = State.SPAWNING
+
+
+# Unspawns the die:
+func unspawn() -> void:
+	animation_player.play_backwards("spawn")
+	yield(animation_player, "animation_finished")
+	queue_free()
+
+
 # Rolls the die:
 func roll() -> void:
 	randomize()
@@ -104,6 +130,7 @@ func roll() -> void:
 	v_velocity = rand_range(ROLL_LIFT_MIN, ROLL_LIFT_MAX)
 	update_frame()
 	update_height()
+	state = State.ROLLING
 
 
 # Updates the die's visual height:
