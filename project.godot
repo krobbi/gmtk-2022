@@ -73,6 +73,7 @@ config/icon="res://resources/textures/icon.png"
 
 ClackCache="*res://global/clack_cache.tscn"
 EventBus="*res://global/event_bus.tscn"
+GameData="*res://global/game_data.tscn"
 
 [display]
 
