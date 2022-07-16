@@ -33,6 +33,10 @@ By Ruxaroh and Krobbizoid.
 run/main_scene="res://scenes/test_table/test_table.tscn"
 config/icon="res://resources/textures/icon.png"
 
+[autoload]
+
+ClackCache="*res://global/clack_cache.tscn"
+
 [display]
 
 window/size/width=1920

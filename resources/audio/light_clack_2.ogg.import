@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/light_clack_2.ogg-27222b36b8e3a3c6e3eb7145efbfb7ee.oggstr"
+
+[deps]
+
+source_file="res://resources/audio/light_clack_2.ogg"
+dest_files=[ "res://.import/light_clack_2.ogg-27222b36b8e3a3c6e3eb7145efbfb7ee.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

@@ -27,6 +27,7 @@ var wall_power: float = WALL_POWER_MIN
 onready var frame_timer: Timer = $FrameTimer
 onready var roll_timer: Timer = $RollTimer
 onready var animation_player: AnimationPlayer = $AnimationPlayer
+onready var clack_player: AudioStreamPlayer2D = $ClackPlayer
 onready var sprite: Sprite = $Sprite
 
 func _physics_process(delta: float) -> void:
@@ -56,6 +57,7 @@ func get_bounce(delta: float) -> bool:
 	if height <= 0.0:
 		height = 0.0
 		v_velocity *= -BOUNCINESS
+		play_clack()
 		
 		if abs(v_velocity) < 1.0:
 			v_velocity = 0.0
@@ -102,7 +104,9 @@ func apply_velocity(delta: float, is_grounded: bool) -> void:
 		collider.velocity += transferred_velocity
 		velocity -= transferred_velocity
 		collider.update_frame()
+		collider.play_clack()
 	
+	play_clack()
 	velocity = velocity.bounce(collision.normal) * wall_power
 	wall_power = max(WALL_POWER_MIN, wall_power - WALL_POWER_DECAY)
 	velocity = move_and_slide(velocity)
@@ -147,6 +151,19 @@ func update_frame() -> void:
 	randomize()
 	sprite.frame = randi() % 8
 	sprite.rotation = float(randi() % 3) * (TAU / 3.0)
+
+
+# Plays a random clack:
+func play_clack() -> void:
+	randomize()
+	
+	if velocity.length() > 2000.0:
+		clack_player.stream = ClackCache.get_heavy_clack()
+	else:
+		clack_player.stream = ClackCache.get_light_clack()
+	
+	clack_player.pitch_scale = rand_range(0.9, 1.1)
+	clack_player.play()
 
 
 # Force stop the die if it has been rolling for too long:

@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/heavy_clack_2.ogg-f11c2861bb0896fbc9cfda256311ef59.oggstr"
+
+[deps]
+
+source_file="res://resources/audio/heavy_clack_2.ogg"
+dest_files=[ "res://.import/heavy_clack_2.ogg-f11c2861bb0896fbc9cfda256311ef59.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0
