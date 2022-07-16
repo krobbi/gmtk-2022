@@ -60,6 +60,7 @@ mana = 10
 
 [node name="Control2" parent="." instance=ExtResource( 9 )]
 
+[connection signal="higher_lower_chosen" from="GameManager" to="PlayerGui" method="display_higher_lower"]
 [connection signal="number_changed" from="GameManager" to="FloatingNumber" method="set_number"]
 [connection signal="round_finished" from="GameManager" to="." method="_on_game_manager_round_finished"]
 [connection signal="roll_finished" from="DieSpawner" to="FloatingNumberSpawner" method="spawn_numbers"]

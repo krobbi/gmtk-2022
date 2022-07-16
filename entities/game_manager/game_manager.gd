@@ -1,6 +1,7 @@
 class_name GameManager
 extends Node
 
+signal higher_lower_chosen(is_higher)
 signal number_changed(number)
 signal round_finished(was_won)
 
@@ -80,6 +81,7 @@ func begin_game() -> void:
 # Runs when the round begins:
 func begin_round() -> void:
 	is_expecting_higher = get_ai_choice()
+	emit_signal("higher_lower_chosen", is_expecting_higher)
 	odds = 14
 	odds_selector.set_number(odds)
 	odds_selector.min_value = odds - mana
