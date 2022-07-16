@@ -1,6 +1,5 @@
 extends Node
 
-signal odds_selected
 signal number_changed(number)
 signal round_finished(was_won)
 
@@ -24,6 +23,22 @@ func _ready() -> void:
 	
 	if error and floating_number_spawner.is_connected("number_rolled", self, "_on_number_rolled"):
 		floating_number_spawner.disconnect("number_rolled", self, "_on_number_rolled")
+	
+	error = odds_selector.connect("odds_selected", self, "_on_odds_selected")
+	
+	if error and odds_selector.is_connected("odds_selected", self, "_on_odds_selected"):
+		odds_selector.disconnect("odds_selected", self, "_on_odds_selected")
+	
+	error = odds_selector.connect("odds_hovered", self, "_on_odds_hovered")
+	
+	if error and odds_selector.is_connected("odds_hovered", self, "_on_odds_hovered"):
+		odds_selector.disconnect("odds_hovered", self, "_on_odds_hovered")
+
+
+# Gets the AI's choice of higher or lower:
+func get_ai_choice() -> bool:
+	randomize()
+	return bool(randi() % 2)
 
 
 # Begins a new game of higher or lower:
@@ -33,6 +48,17 @@ func begin_game() -> void:
 	number = 14
 	
 	emit_signal("number_changed", number)
+	begin_round()
+
+
+# Runs when the round begins:
+func begin_round() -> void:
+	is_expecting_higher = get_ai_choice()
+	odds = 14
+	odds_selector.set_number(odds)
+	odds_selector.min_value = odds - mana
+	odds_selector.max_value = odds + mana
+	select_odds()
 
 
 # Let the player select the odds:
@@ -40,9 +66,20 @@ func select_odds() -> void:
 	odds_selector.set_process_input(true)
 
 
-# Runs when higher or lower is decided by the opponent:
-func begin_round(is_higher: bool) -> void:
-	is_expecting_higher = is_higher
+func _on_odds_hovered(new_odds: int) -> void:
+	var cost: int = int(abs(new_odds - odds))
+	mana_bar.highlight_cost(cost)
+
+
+# Runs when the player selects odds:
+func _on_odds_selected(new_odds: int) -> void:
+	var cost: int = int(abs(new_odds - odds))
+	odds = new_odds
+	mana -= cost
+	mana_bar.changeMana(mana)
+	mana_bar.unhighlight_cost()
+	floating_number_spawner.odds = odds
+	print("Selected odds of %d" % new_odds)
 	die_spawner.spawn_dice()
 
 

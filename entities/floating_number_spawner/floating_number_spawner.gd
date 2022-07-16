@@ -10,6 +10,7 @@ const FloatingNumberScene: PackedScene = preload(
 const CENTER: Vector2 = Vector2(960.0, 540.0)
 const STANDARD_DEVIATION: float = 4.0
 
+var odds: int = 14
 var floating_numbers: Array = []
 
 onready var reveal_player: AudioStreamPlayer = $RevealPlayer
@@ -75,7 +76,7 @@ func get_rolls(target: int, dice: int, sides: int) -> PoolIntArray:
 
 
 func spawn_numbers(positions: Array) -> void:
-	var rolls: PoolIntArray = get_rolls(get_weighted_roll(14), positions.size(), 6)
+	var rolls: PoolIntArray = get_rolls(get_weighted_roll(odds), positions.size(), 6)
 	
 	for i in range(positions.size()):
 		var floating_number: FloatingNumber = FloatingNumberScene.instance()

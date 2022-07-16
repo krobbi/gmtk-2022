@@ -21,11 +21,15 @@ func changeMana(value):
 			manaNodes[i].enable()
 		else:
 			manaNodes[i].disable()
-			
 
+
+func highlight_cost(value: int) -> void:
+	unhighlight_cost()
 	
-	
-	
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+	for i in range(mana - value, mana):
+		manaNodes[i].modulate = Color(2.0, 2.0, 2.0, 1.0)
+
+
+func unhighlight_cost() -> void:
+	for mana_node in manaNodes:
+		mana_node.modulate = Color.white
