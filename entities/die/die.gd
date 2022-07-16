@@ -24,11 +24,6 @@ var wall_power: float = WALL_POWER_MIN
 onready var frame_timer: Timer = $FrameTimer
 onready var sprite: Sprite = $Sprite
 
-func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("ui_accept"):
-		roll()
-
-
 func _physics_process(delta: float) -> void:
 	var is_grounded: bool = get_bounce(delta)
 	update_height()

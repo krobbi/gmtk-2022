@@ -13,9 +13,15 @@ _global_script_classes=[ {
 "class": "Die",
 "language": "GDScript",
 "path": "res://entities/die/die.gd"
+}, {
+"base": "YSort",
+"class": "DieSpawer",
+"language": "GDScript",
+"path": "res://entities/die_spawner/die_spawner.gd"
 } ]
 _global_script_class_icons={
-"Die": ""
+"Die": "",
+"DieSpawer": ""
 }
 
 [application]
