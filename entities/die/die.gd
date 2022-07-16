@@ -2,26 +2,31 @@ class_name Die
 extends KinematicBody2D
 
 const PERSPECTIVE_SCALE: float = 0.003
+const GRAVITY: float = 20.0
+const BOUNCINESS: float = 0.6
 const BOUNCE_FRICTION: float = 0.8
-const AIR_FRICTION: float = 300.0
+const AIR_FRICTION: float = 500.0
+const FLOOR_FRICTION: float = 1000.0
 const ENERGY_TRANSFER: float = 0.3
-
-export(float) var gravity: float = 20.0
-export(float) var bounciness: float = 0.7
+const ROLL_SPEED_MIN: float = 2500.0
+const ROLL_SPEED_MAX: float = 3000.0
+const ROLL_LIFT_MIN: float = 10.0
+const ROLL_LIFT_MAX: float = 12.0
+const WALL_POWER_MIN: float = 0.9
+const WALL_POWER_MAX: float = 1.2
+const WALL_POWER_DECAY: float = 0.05
 
 var height: float = 0.0
 var v_velocity: float = 0.0
 var velocity: Vector2 = Vector2.ZERO
+var wall_power: float = WALL_POWER_MIN
 
+onready var frame_timer: Timer = $FrameTimer
 onready var sprite: Sprite = $Sprite
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_accept"):
-		v_velocity = rand_range(10.0, 12.0)
-		var angle: float = rand_range(0.0, TAU)
-		velocity = Vector2(cos(angle), sin(angle)) * rand_range(2500.0, 3000.0)
-		update_frame()
-		update_height()
+		roll()
 
 
 func _physics_process(delta: float) -> void:
@@ -32,12 +37,7 @@ func _physics_process(delta: float) -> void:
 		velocity *= BOUNCE_FRICTION
 		update_frame()
 	
-	apply_velocity(delta)
-
-
-# Gets whether the die is stopped:
-func is_stopped() -> bool:
-	return v_velocity == 0.0 and height == 0.0 and velocity == Vector2.ZERO
+	apply_velocity(delta, is_grounded)
 
 
 # Bounces the die on the floor and returns whether it is grounded:
@@ -45,12 +45,12 @@ func get_bounce(delta: float) -> bool:
 	if height == 0.0 and v_velocity == 0.0:
 		return true
 	
-	v_velocity -= gravity * delta
+	v_velocity -= GRAVITY * delta
 	height += v_velocity
 	
 	if height <= 0.0:
 		height = 0.0
-		v_velocity *= -bounciness
+		v_velocity *= -BOUNCINESS
 		
 		if abs(v_velocity) < 1.0:
 			v_velocity = 0.0
@@ -60,14 +60,27 @@ func get_bounce(delta: float) -> bool:
 	return false
 
 
-func apply_velocity(delta: float) -> void:
+# Gets whether the die is stopped:
+func is_stopped() -> bool:
+	return v_velocity == 0.0 and height == 0.0 and velocity == Vector2.ZERO
+
+
+# Applies the die's velocity:
+func apply_velocity(delta: float, is_grounded: bool) -> void:
 	if velocity == Vector2.ZERO:
 		return
 	
 	var collision: KinematicCollision2D = move_and_collide(velocity * delta)
 	
 	if not collision:
-		velocity = velocity.move_toward(Vector2.ZERO, AIR_FRICTION * delta)
+		if is_grounded:
+			velocity = velocity.move_toward(Vector2.ZERO, FLOOR_FRICTION * delta)
+		else:
+			velocity = velocity.move_toward(Vector2.ZERO, AIR_FRICTION * delta)
+			
+			if frame_timer.is_stopped():
+				update_frame()
+				frame_timer.start()
 		
 		if velocity.length_squared() < 1.0:
 			velocity = Vector2.ZERO
@@ -77,24 +90,36 @@ func apply_velocity(delta: float) -> void:
 	var collider: Object = collision.collider
 	
 	if collider is Node and collider.is_in_group("dice"):
-		var exchange: Vector2 = velocity * ENERGY_TRANSFER
-		collider.velocity += exchange
-		velocity -= exchange
+		var transferred_velocity: Vector2 = velocity * ENERGY_TRANSFER
+		collider.velocity += transferred_velocity
+		velocity -= transferred_velocity
 		collider.update_frame()
 	
-	velocity = velocity.bounce(collision.normal)
+	velocity = velocity.bounce(collision.normal) * wall_power
+	wall_power = max(WALL_POWER_MIN, wall_power - WALL_POWER_DECAY)
 	velocity = move_and_slide(velocity)
 	update_frame()
 
 
-# Update the die's visual height:
+# Rolls the die:
+func roll() -> void:
+	randomize()
+	var angle: float = rand_range(0.0, TAU)
+	velocity = Vector2(cos(angle), sin(angle)) * rand_range(ROLL_SPEED_MIN, ROLL_SPEED_MAX)
+	v_velocity = rand_range(ROLL_LIFT_MIN, ROLL_LIFT_MAX)
+	update_frame()
+	update_height()
+
+
+# Updates the die's visual height:
 func update_height() -> void:
 	var scale: float = 1.0 + height * PERSPECTIVE_SCALE
 	sprite.position.y = -height
 	sprite.scale = Vector2(scale, scale)
 
 
-# Set the die to a random frame and rotation:
+# Updates the die to a random frame and rotation:
 func update_frame() -> void:
+	randomize()
 	sprite.frame = randi() % 8
 	sprite.rotation = float(randi() % 3) * (TAU / 3.0)

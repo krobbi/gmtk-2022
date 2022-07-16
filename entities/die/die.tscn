@@ -13,6 +13,10 @@ __meta__ = {
 "_edit_group_": true
 }
 
+[node name="FrameTimer" type="Timer" parent="."]
+wait_time = 0.15
+one_shot = true
+
 [node name="Shadow" type="Sprite" parent="."]
 modulate = Color( 1, 1, 1, 0.501961 )
 texture = ExtResource( 3 )
@@ -21,5 +25,5 @@ texture = ExtResource( 3 )
 texture = ExtResource( 2 )
 hframes = 8
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
