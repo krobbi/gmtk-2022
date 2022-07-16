@@ -3,6 +3,7 @@ extends Node
 
 signal higher_lower_chosen(is_higher)
 signal number_changed(number)
+signal round_count_changed(round_count)
 signal round_finished(was_won)
 
 enum AI_STRATEGY {GOOD, BAD, RANDOM}
@@ -12,6 +13,7 @@ export(NodePath) var floating_number_spawner_path: NodePath = NodePath()
 export(NodePath) var mana_bar_path: NodePath = NodePath()
 export(NodePath) var odds_selector_path: NodePath = NodePath()
 
+var round_count: int = 3
 var number: int = 14
 var mana: int = 15
 var odds: int = 14
@@ -70,6 +72,8 @@ func get_ai_choice() -> bool:
 
 # Begins a new game of higher or lower:
 func begin_game() -> void:
+	round_count = 3
+	emit_signal("round_count_changed", round_count)
 	mana = 20
 	mana_bar.changeMana(mana)
 	number = 14
@@ -94,6 +98,16 @@ func select_odds() -> void:
 	odds_selector.set_process_input(true)
 
 
+# Finishes the round with a win or loss:
+func finish_round(was_won: bool) -> void:
+	emit_signal("round_finished", was_won)
+	
+	if round_count > 0:
+		begin_round()
+	else:
+		pass # TODO: End night or get next opponent.
+
+
 func _on_odds_hovered(new_odds: int) -> void:
 	var cost: int = int(abs(new_odds - odds))
 	mana_bar.highlight_cost(cost)
@@ -108,6 +122,8 @@ func _on_odds_selected(new_odds: int) -> void:
 	mana_bar.unhighlight_cost()
 	floating_number_spawner.odds = odds
 	print("Selected odds of %d" % new_odds)
+	round_count -= 1
+	emit_signal("round_count_changed", round_count)
 	die_spawner.spawn_dice()
 
 
@@ -121,7 +137,4 @@ func _on_number_rolled(new_number: int) -> void:
 	number = new_number
 	emit_signal("number_changed", number)
 	
-	if is_expecting_higher == was_higher:
-		emit_signal("round_finished", true)
-	else:
-		emit_signal("round_finished", false)
+	finish_round(is_expecting_higher == was_higher)
