@@ -1,10 +1,7 @@
 extends Control
 
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
-
+signal toggle_control(status)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -18,7 +15,9 @@ func _ready():
 
 func _on_open_bio():
 	show()
+	emit_signal("toggle_control", true)
 
 func _on_close_button_pressed():
 	hide()
+	emit_signal("toggle_control", false)
 
