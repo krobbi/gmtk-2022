@@ -25,6 +25,7 @@ var velocity: Vector2 = Vector2.ZERO
 var wall_power: float = WALL_POWER_MIN
 
 onready var frame_timer: Timer = $FrameTimer
+onready var roll_timer: Timer = $RollTimer
 onready var animation_player: AnimationPlayer = $AnimationPlayer
 onready var sprite: Sprite = $Sprite
 
@@ -130,6 +131,7 @@ func roll() -> void:
 	v_velocity = rand_range(ROLL_LIFT_MIN, ROLL_LIFT_MAX)
 	update_frame()
 	update_height()
+	roll_timer.start()
 	state = State.ROLLING
 
 
@@ -145,3 +147,8 @@ func update_frame() -> void:
 	randomize()
 	sprite.frame = randi() % 8
 	sprite.rotation = float(randi() % 3) * (TAU / 3.0)
+
+
+# Force stop the die if it has been rolling for too long:
+func _on_roll_timer_timeout() -> void:
+	$CollisionShape.set_deferred("disabled", true)

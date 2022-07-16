@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/dice_despawn.ogg-e17da0ffb4de4b0aed0c57a55a0199da.oggstr"
+
+[deps]
+
+source_file="res://resources/audio/dice_despawn.ogg"
+dest_files=[ "res://.import/dice_despawn.ogg-e17da0ffb4de4b0aed0c57a55a0199da.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

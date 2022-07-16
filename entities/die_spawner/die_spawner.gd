@@ -7,6 +7,9 @@ const DieScene: PackedScene = preload("res://entities/die/die.tscn")
 
 var dice: Array = []
 
+onready var spawn_player: AudioStreamPlayer = $SpawnPlayer
+onready var despawn_player: AudioStreamPlayer = $DespawnPlayer
+
 # Dodgy check for finished roll:
 func _physics_process(_delta: float) -> void:
 	if dice.empty():
@@ -16,6 +19,7 @@ func _physics_process(_delta: float) -> void:
 		if not die.is_stopped():
 			return
 	
+	despawn_player.play()
 	var positions: Array = []
 	
 	for die in dice:
@@ -35,4 +39,5 @@ func spawn_dice() -> void:
 		add_child(die)
 		die.spawn()
 	
+	spawn_player.play()
 	set_physics_process(true)
