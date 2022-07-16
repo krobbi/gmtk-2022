@@ -32,13 +32,42 @@ func _process(_delta: float) -> void:
 		floating_numbers.clear()
 
 
+func get_rolls(target: int, dice: int, sides: int) -> PoolIntArray:
+	var rolls: PoolIntArray = PoolIntArray()
+	var available: PoolIntArray = PoolIntArray()
+	available.resize(dice)
+	
+	for i in range(dice):
+		available[i] = 1
+	
+	var remainder: int = target - dice
+	
+	while remainder > 0 and not available.empty():
+		var index: int = randi() % available.size()
+		
+		if available[index] >= sides:
+			rolls.push_back(sides)
+			available.remove(index)
+		else:
+			available[index] += 1
+			remainder -= 1
+	
+	while not available.empty():
+		rolls.push_back(available[0])
+		available.remove(0)
+	
+	return rolls
+
+
 func spawn_numbers(positions: Array) -> void:
-	for position in positions:
+	var rolls: PoolIntArray = get_rolls(14, positions.size(), 6)
+	
+	for i in range(positions.size()):
 		var floating_number: FloatingNumber = FloatingNumberScene.instance()
-		floating_number.position = position
+		floating_number.position = positions[i]
 		floating_numbers.push_back(floating_number)
 		add_child(floating_number)
-		floating_number.set_number(randi() % 6 + 1)
+		floating_number.set_number(rolls[i])
 	
 	set_process(true)
 
