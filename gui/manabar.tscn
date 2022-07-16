@@ -1,0 +1,120 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://gui/manabar.gd" type="Script" id=1]
+[ext_resource path="res://gui/manaCrystal.tscn" type="PackedScene" id=2]
+
+[node name="Control" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = -1445.0
+margin_bottom = -1005.0
+script = ExtResource( 1 )
+mana = 15
+
+[node name="1" parent="." instance=ExtResource( 2 )]
+rect_pivot_offset = Vector2( -7, -29 )
+
+[node name="2" parent="." instance=ExtResource( 2 )]
+margin_left = 20.0
+margin_top = 25.0
+margin_right = -1850.0
+margin_bottom = -1005.0
+rect_pivot_offset = Vector2( -27, -44 )
+
+[node name="3" parent="." instance=ExtResource( 2 )]
+margin_left = 45.0
+margin_right = -1825.0
+
+[node name="4" parent="." instance=ExtResource( 2 )]
+margin_left = 65.0
+margin_top = 25.0
+margin_right = -1805.0
+margin_bottom = -1005.0
+
+[node name="5" parent="." instance=ExtResource( 2 )]
+margin_left = 90.0
+margin_right = -1780.0
+
+[node name="6" parent="." instance=ExtResource( 2 )]
+margin_left = 110.0
+margin_top = 25.0
+margin_right = -1760.0
+margin_bottom = -1005.0
+rect_pivot_offset = Vector2( -27, -44 )
+
+[node name="7" parent="." instance=ExtResource( 2 )]
+margin_left = 135.0
+margin_right = -1735.0
+
+[node name="8" parent="." instance=ExtResource( 2 )]
+margin_left = 155.0
+margin_top = 25.0
+margin_right = -1715.0
+margin_bottom = -1005.0
+rect_pivot_offset = Vector2( -27, -44 )
+
+[node name="9" parent="." instance=ExtResource( 2 )]
+margin_left = 180.0
+margin_right = -1690.0
+
+[node name="10" parent="." instance=ExtResource( 2 )]
+margin_left = 200.0
+margin_top = 25.0
+margin_right = -1670.0
+margin_bottom = -1005.0
+rect_pivot_offset = Vector2( -27, -44 )
+
+[node name="11" parent="." instance=ExtResource( 2 )]
+margin_left = 225.0
+margin_right = -1645.0
+rect_pivot_offset = Vector2( -7, -29 )
+
+[node name="12" parent="." instance=ExtResource( 2 )]
+margin_left = 245.0
+margin_top = 25.0
+margin_right = -1625.0
+margin_bottom = -1005.0
+rect_pivot_offset = Vector2( -27, -44 )
+
+[node name="13" parent="." instance=ExtResource( 2 )]
+margin_left = 270.0
+margin_right = -1600.0
+
+[node name="14" parent="." instance=ExtResource( 2 )]
+margin_left = 290.0
+margin_top = 25.0
+margin_right = -1580.0
+margin_bottom = -1005.0
+
+[node name="15" parent="." instance=ExtResource( 2 )]
+margin_left = 315.0
+margin_right = -1555.0
+
+[node name="16" parent="." instance=ExtResource( 2 )]
+margin_left = 335.0
+margin_top = 25.0
+margin_right = -1535.0
+margin_bottom = -1005.0
+rect_pivot_offset = Vector2( -27, -44 )
+
+[node name="17" parent="." instance=ExtResource( 2 )]
+margin_left = 360.0
+margin_right = -1510.0
+
+[node name="18" parent="." instance=ExtResource( 2 )]
+margin_left = 380.0
+margin_top = 25.0
+margin_right = -1490.0
+margin_bottom = -1005.0
+rect_pivot_offset = Vector2( -27, -44 )
+
+[node name="19" parent="." instance=ExtResource( 2 )]
+margin_left = 405.0
+margin_right = -1465.0
+
+[node name="20" parent="." instance=ExtResource( 2 )]
+margin_left = 425.0
+margin_top = 25.0
+margin_right = -51.0
+margin_bottom = -50.0
+rect_pivot_offset = Vector2( -27, -44 )
