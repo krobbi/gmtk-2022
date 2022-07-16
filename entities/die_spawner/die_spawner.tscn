@@ -12,6 +12,8 @@ __meta__ = {
 
 [node name="SpawnPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 2 )
+volume_db = -7.0
 
 [node name="DespawnPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 3 )
+volume_db = -7.0
