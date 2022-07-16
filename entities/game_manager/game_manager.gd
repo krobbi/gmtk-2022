@@ -1,7 +1,10 @@
+class_name GameManager
 extends Node
 
 signal number_changed(number)
 signal round_finished(was_won)
+
+enum AI_STRATEGY {GOOD, BAD, RANDOM}
 
 export(NodePath) var die_spawner_path: NodePath = NodePath()
 export(NodePath) var floating_number_spawner_path: NodePath = NodePath()
@@ -35,10 +38,33 @@ func _ready() -> void:
 		odds_selector.disconnect("odds_hovered", self, "_on_odds_hovered")
 
 
-# Gets the AI's choice of higher or lower:
+# Gets the AI's current strategy:
+func get_ai_strategy() -> int:
+	return AI_STRATEGY.RANDOM
+
+
+# Gets whether the AI chooses higher on its strategy:
 func get_ai_choice() -> bool:
+	var strategy: int = get_ai_strategy()
 	randomize()
-	return bool(randi() % 2)
+	
+	match strategy:
+		AI_STRATEGY.GOOD:
+			if number > 14:
+				return false
+			elif number < 14:
+				return true
+			else:
+				return bool(randi() % 2)
+		AI_STRATEGY.BAD:
+			if number > 14:
+				return true
+			elif number < 14:
+				return false
+			else:
+				return bool(randi() % 2)
+		AI_STRATEGY.RANDOM, _:
+			return bool(randi() % 2)
 
 
 # Begins a new game of higher or lower:
