@@ -18,10 +18,10 @@ __meta__ = {
 }
 
 [node name="Label" type="Label" parent="."]
-margin_left = 125.0
-margin_top = 132.0
-margin_right = 302.0
-margin_bottom = 163.0
+margin_left = 536.0
+margin_top = 440.0
+margin_right = 714.0
+margin_bottom = 471.0
 rect_scale = Vector2( 5, 5 )
 text = "Press space to roll the dice.
 Test scene, do not use this!"
