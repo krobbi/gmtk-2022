@@ -1,9 +1,9 @@
 extends Control
 
+onready var face_button: TextureButton = $face/TextureButton
 onready var speech_bubble: Sprite = $textBox
 onready var chip_sprites: Array = $Chips.get_children()
 onready var credit_sprites: Array = $Score.get_children()
-
 
 func _ready():
 	display_credit(0)
@@ -15,6 +15,10 @@ func display_higher_lower(is_higher: bool) -> void:
 		speech_bubble.texture = preload("res://resources/textures/speech_box_lower.png")
 	
 	speech_bubble.show()
+
+
+func display_player(value: String) -> void:
+	face_button.texture_normal = load("res://resources/textures/npcs/%s.png" % value)
 
 
 func display_chips(value: int) -> void:
