@@ -6,6 +6,7 @@ signal despawned(number)
 const TEXTURE: Texture = preload("res://resources/textures/numbers.png")
 
 export(int) var number: int = 0 setget set_number
+export(float) var number_scale: float = 0.8
 
 var sprites: Array = []
 
@@ -35,11 +36,12 @@ func set_number(value: int) -> void:
 		sprite.hframes = 10
 		sprite.frame = int(string[i])
 		sprite.position.x = offset + i * 200.0
-		sprite.scale = Vector2(0.8, 0.8)
+		sprite.scale = Vector2(number_scale, number_scale)
 		sprites.push_back(sprite)
 		add_child(sprite)
 	
-	animation_player.play("floop")
+	if animation_player:
+		animation_player.play("floop")
 
 
 func get_ease(to: Vector2, weight: float) -> bool:
