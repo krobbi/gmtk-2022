@@ -1,7 +1,7 @@
 extends Node
 
 var opponents: Dictionary = {
-	"sue": Opponent.new(),
+	"sue": load("res://utils/opponents/opponent_sue.gd").new(),
 	"albert": Opponent.new(),
 	"johnny": Opponent.new(),
 }
