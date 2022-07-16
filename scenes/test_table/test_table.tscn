@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://entities/die_spawner/die_spawner.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/test_table/test_table.gd" type="Script" id=2]
 [ext_resource path="res://resources/textures/test_table.png" type="Texture" id=3]
+[ext_resource path="res://entities/game_camera/game_camera.tscn" type="PackedScene" id=4]
 
 [node name="TestTable" type="Node2D"]
 script = ExtResource( 2 )
@@ -32,3 +33,5 @@ Test scene, do not use this!"
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
 polygon = PoolVector2Array( 1920, 0, 1920, 296, 1856, 264, 1792, 240, 1728, 216, 1664, 200, 1600, 184, 1536, 168, 1472, 152, 1408, 144, 1344, 136, 1280, 128, 1216, 120, 1152, 112, 1088, 112, 1024, 112, 960, 112, 896, 112, 832, 112, 768, 120, 704, 128, 640, 136, 576, 144, 512, 160, 448, 168, 384, 184, 320, 208, 256, 232, 192, 248, 128, 280, 64, 312, 0, 344, 0, 1080, 1920, 1080, 1920, 296, 1976, 272, 2120, 1240, -136, 1672, -720, -552, -248, -264, 0, 0 )
+
+[node name="GameCamera" parent="." instance=ExtResource( 4 )]

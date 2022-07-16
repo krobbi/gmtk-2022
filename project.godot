@@ -36,6 +36,7 @@ config/icon="res://resources/textures/icon.png"
 [autoload]
 
 ClackCache="*res://global/clack_cache.tscn"
+EventBus="*res://global/event_bus.tscn"
 
 [display]
 

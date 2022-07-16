@@ -17,6 +17,7 @@ const ROLL_LIFT_MAX: float = 12.0
 const WALL_POWER_MIN: float = 0.9
 const WALL_POWER_MAX: float = 1.2
 const WALL_POWER_DECAY: float = 0.05
+const SHAKE_FACTOR: float = 25000.0
 
 var state: int = State.IDLE
 var height: float = 0.0
@@ -107,6 +108,7 @@ func apply_velocity(delta: float, is_grounded: bool) -> void:
 		collider.play_clack()
 	
 	play_clack()
+	EventBus.emit_signal("shake_camera_request", velocity.length() / SHAKE_FACTOR)
 	velocity = velocity.bounce(collision.normal) * wall_power
 	wall_power = max(WALL_POWER_MIN, wall_power - WALL_POWER_DECAY)
 	velocity = move_and_slide(velocity)
@@ -157,10 +159,14 @@ func update_frame() -> void:
 func play_clack() -> void:
 	randomize()
 	
-	if velocity.length() > 2000.0:
+	var speed: float = velocity.length()
+	
+	if speed > 2000.0:
 		clack_player.stream = ClackCache.get_heavy_clack()
-	else:
+	elif speed > 50.0 or abs(v_velocity) > 10.0:
 		clack_player.stream = ClackCache.get_light_clack()
+	else:
+		return
 	
 	clack_player.pitch_scale = rand_range(0.9, 1.1)
 	clack_player.play()
