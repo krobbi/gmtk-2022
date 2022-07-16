@@ -62,10 +62,10 @@ mana = 10
 [node name="Control2" parent="." instance=ExtResource( 9 )]
 
 [node name="CasinoGui" parent="." instance=ExtResource( 11 )]
-margin_left = 1184.0
-margin_top = 856.0
-margin_right = 1184.0
-margin_bottom = 856.0
+margin_left = 1198.0
+margin_top = 867.0
+margin_right = 1198.0
+margin_bottom = 867.0
 
 [connection signal="higher_lower_chosen" from="GameManager" to="PlayerGui" method="display_higher_lower"]
 [connection signal="number_changed" from="GameManager" to="FloatingNumber" method="set_number"]
