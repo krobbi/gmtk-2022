@@ -25,7 +25,7 @@ func _physics_process(_delta: float) -> void:
 	
 	for die in dice:
 		positions.push_back(die.position)
-		die.unspawn()
+		die.despawn()
 	
 	dice.clear()
 	emit_signal("roll_finished", positions)

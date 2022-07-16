@@ -122,8 +122,8 @@ func spawn() -> void:
 	state = State.SPAWNING
 
 
-# Unspawns the die:
-func unspawn() -> void:
+# Despawns the die:
+func despawn() -> void:
 	animation_player.play_backwards("spawn")
 	yield(animation_player, "animation_finished")
 	queue_free()
