@@ -23,6 +23,9 @@ func _exit_tree() -> void:
 
 func _process(delta: float) -> void:
 	if trauma != 0.0:
+		if not GameData.setting_screenShake:
+			trauma = 0.0
+		
 		trauma = max(0.0, trauma - SHAKE_DECAY * delta)
 		var shake: float = trauma * trauma
 		noise_pos += SHAKE_SPEED * delta
