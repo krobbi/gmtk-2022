@@ -42,9 +42,32 @@ func set_number(value: int) -> void:
 	elif value > max_value:
 		value = max_value
 	
+	print(min_value)
+	if value == min_value:
+		get_node("../leftButton").hide()
+	else:
+		get_node("../leftButton").show()
+
+	if value == max_value:
+		get_node("../rightButton").hide()
+	else:
+		get_node("../rightButton").show()
+
 	if value == number:
 		return
 	
 	number = value
 	floating_number.number = value
 	emit_signal("odds_hovered", number)
+
+
+func _on_rollButton_pressed():
+	emit_signal("odds_selected", number)
+
+
+func _on_leftButton_pressed():
+	set_number(number -1)
+
+
+func _on_rightButton_pressed():
+	set_number(number +1)

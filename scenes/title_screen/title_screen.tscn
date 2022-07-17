@@ -71,6 +71,10 @@ region_rect = Rect2( -3.79198, -0.356596, 131.078, 131.829 )
 [node name="ClackPlayer" type="AudioStreamPlayer2D" parent="."]
 
 [connection signal="mouse_entered" from="play/texturebutton" to="." method="_on_play_mouse_entered"]
+[connection signal="pressed" from="play/texturebutton" to="." method="_on_texturebutton_pressed"]
 [connection signal="mouse_entered" from="tutorial/texturebutton" to="." method="_on_tutorial_mouse_entered"]
+[connection signal="pressed" from="tutorial/texturebutton" to="." method="_on_texturebutton_pressed"]
 [connection signal="mouse_entered" from="options/texturebutton" to="." method="_on_optioins_mouse_entered"]
+[connection signal="pressed" from="options/texturebutton" to="." method="_on_texturebutton_pressed"]
 [connection signal="mouse_entered" from="credits/texturebutton" to="." method="_on_credits_mouse_entered"]
+[connection signal="pressed" from="credits/texturebutton" to="." method="_on_texturebutton_pressed"]

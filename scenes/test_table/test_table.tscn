@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://entities/die_spawner/die_spawner.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/test_table/test_table.gd" type="Script" id=2]
@@ -12,6 +12,12 @@
 [ext_resource path="res://gui/player_gui.tscn" type="PackedScene" id=10]
 [ext_resource path="res://gui/casino_gui.tscn" type="PackedScene" id=11]
 [ext_resource path="res://gui/bio.tscn" type="PackedScene" id=12]
+[ext_resource path="res://resources/textures/roll.png" type="Texture" id=13]
+[ext_resource path="res://resources/textures/roll_hover.png" type="Texture" id=14]
+[ext_resource path="res://resources/textures/left_hover.png" type="Texture" id=15]
+[ext_resource path="res://resources/textures/left.png" type="Texture" id=16]
+[ext_resource path="res://resources/textures/right_hover.png" type="Texture" id=17]
+[ext_resource path="res://resources/textures/right.png" type="Texture" id=18]
 
 [node name="TestTable" type="Node2D"]
 script = ExtResource( 2 )
@@ -23,7 +29,7 @@ __meta__ = {
 die_spawner_path = NodePath("../DieSpawner")
 floating_number_spawner_path = NodePath("../FloatingNumberSpawner")
 mana_bar_path = NodePath("../Control")
-odds_selector_path = NodePath("../Control2")
+odds_selector_path = NodePath("../oddsSelector")
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 3 )
@@ -60,7 +66,7 @@ margin_right = 4.0
 margin_bottom = 996.0
 mana = 10
 
-[node name="Control2" parent="." instance=ExtResource( 9 )]
+[node name="oddsSelector" parent="." instance=ExtResource( 9 )]
 
 [node name="CasinoGui" parent="." instance=ExtResource( 11 )]
 margin_left = 1198.0
@@ -75,6 +81,33 @@ margin_top = 52.0
 margin_right = 586.0
 margin_bottom = 52.0
 
+[node name="rollButton" type="TextureButton" parent="."]
+margin_left = 877.0
+margin_top = 883.0
+margin_right = 1040.0
+margin_bottom = 980.0
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource( 13 )
+texture_hover = ExtResource( 14 )
+
+[node name="rightButton" type="TextureButton" parent="."]
+margin_left = 1098.0
+margin_top = 1012.0
+margin_right = 1150.0
+margin_bottom = 1073.0
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource( 18 )
+texture_hover = ExtResource( 17 )
+
+[node name="leftButton" type="TextureButton" parent="."]
+margin_left = 752.0
+margin_top = 1012.0
+margin_right = 804.0
+margin_bottom = 1073.0
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource( 16 )
+texture_hover = ExtResource( 15 )
+
 [connection signal="balance_changed" from="GameManager" to="PlayerGui" method="display_credit"]
 [connection signal="higher_lower_chosen" from="GameManager" to="PlayerGui" method="display_higher_lower"]
 [connection signal="number_changed" from="GameManager" to="FloatingNumber" method="set_number"]
@@ -82,3 +115,6 @@ margin_bottom = 52.0
 [connection signal="player_count_changed" from="GameManager" to="CasinoGui" method="display_player_count"]
 [connection signal="round_count_changed" from="GameManager" to="PlayerGui" method="display_chips"]
 [connection signal="roll_finished" from="DieSpawner" to="FloatingNumberSpawner" method="spawn_numbers"]
+[connection signal="pressed" from="rollButton" to="oddsSelector" method="_on_rollButton_pressed"]
+[connection signal="pressed" from="rightButton" to="oddsSelector" method="_on_rightButton_pressed"]
+[connection signal="pressed" from="leftButton" to="oddsSelector" method="_on_leftButton_pressed"]
