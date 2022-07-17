@@ -2,13 +2,18 @@ extends Control
 
 signal open_bio()
 
+onready var profile_button: TextureButton = $face/TextureButton
 onready var speech_bubble: Sprite = $textBox
 onready var chip_sprites: Array = $Chips.get_children()
 onready var credit_sprites: Array = $Score.get_children()
 
-
 func _ready():
 	display_credit(0)
+
+
+func display_player(value: String) -> void:
+	profile_button.texture_normal = load("res://resources/textures/npcs/%s.png" % GameData.get_profile_key(value))
+
 
 func display_higher_lower(is_higher: bool) -> void:
 	if is_higher:
