@@ -6,6 +6,7 @@ var opponents: Dictionary = {
 	"johnny": load("res://utils/opponents/opponent_johnny.gd").new(),
 	"jimmy": load("res://utils/opponents/opponent_jimmy.gd").new(),
 	"karen": load("res://utils/opponents/opponent_karen.gd").new(),
+	"marcus": load("res://utils/opponents/opponent_marcus.gd").new(),
 }
 
 func get_profile_key(key: String) -> String:
