@@ -1,6 +1,7 @@
 extends Node
 
 var night: int = 0
+var house_balance: int = 0
 
 #Settigs
 var setting_screenShake: bool = true
@@ -21,6 +22,7 @@ var bios: Dictionary = {}
 # New game:
 func reset() -> void:
 	night = 0
+	house_balance = 0
 	opponents = {
 		"sue": load("res://utils/opponents/opponent_sue.gd").new(),
 		"albert": load("res://utils/opponents/opponent_albert.gd").new(),
