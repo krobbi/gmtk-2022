@@ -17,6 +17,7 @@ export(NodePath) var die_spawner_path: NodePath = NodePath()
 export(NodePath) var floating_number_spawner_path: NodePath = NodePath()
 export(NodePath) var mana_bar_path: NodePath = NodePath()
 export(NodePath) var odds_selector_path: NodePath = NodePath()
+export(NodePath) var player_gui_path: NodePath = NodePath()
 
 var opponent_queue: Array = []
 var current_opponent: String = "sue"
@@ -31,6 +32,7 @@ onready var die_spawner: DieSpawer = get_node(die_spawner_path)
 onready var floating_number_spawner: FloatingNumberSpawner = get_node(floating_number_spawner_path)
 onready var mana_bar: Control = get_node(mana_bar_path)
 onready var odds_selector: Control = get_node(odds_selector_path)
+onready var player_gui: Control = get_node(player_gui_path)
 
 func _ready() -> void:
 	var error: int = floating_number_spawner.connect("number_rolled", self, "_on_number_rolled")
@@ -122,6 +124,10 @@ func begin_game() -> void:
 	current_opponent = opponent_queue[0]
 	opponent_queue.remove(0)
 	emit_signal("player_changed", current_opponent)
+	
+	player_gui.animation_player.play("scooch_in")
+	yield(player_gui, "scooched_in")
+	
 	emit_signal("balance_changed", GameData.get_total_balance(current_opponent, night_number))
 	emit_signal("player_count_changed", opponent_queue.size())
 	
@@ -177,6 +183,9 @@ func _on_round_end() -> void:
 	if round_count > 0:
 		begin_round()
 	else:
+		player_gui.animation_player.play("scooch_out")
+		yield(player_gui, "scooched_out")
+		
 		begin_game()
 
 

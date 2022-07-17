@@ -30,6 +30,7 @@ die_spawner_path = NodePath("../DieSpawner")
 floating_number_spawner_path = NodePath("../FloatingNumberSpawner")
 mana_bar_path = NodePath("../Control")
 odds_selector_path = NodePath("../oddsSelector")
+player_gui_path = NodePath("../PlayerGui")
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 3 )

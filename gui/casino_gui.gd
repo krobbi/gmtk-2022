@@ -8,7 +8,7 @@ onready var player_count_sprites: Array = $player_count.get_children()
 
 func _ready():
 	target = GameData.TARGETS[GameData.night - 1]
-	update_profit(profit)
+	update_profit(GameData.house_balance)
 
 func display_player_count(value: int) -> void:
 	for i in range(player_count_sprites.size()):

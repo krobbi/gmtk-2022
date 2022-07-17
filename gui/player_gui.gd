@@ -2,11 +2,14 @@ extends Control
 
 signal open_bio()
 signal round_ended
+signal scooched_out
+signal scooched_in
 
 onready var profile_button: TextureButton = $face/TextureButton
 onready var speech_bubble: Sprite = $textBox
 onready var chip_sprites: Array = $Chips.get_children()
 onready var credit_sprites: Array = $Score.get_children()
+onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 func _ready():
 	display_credit(0)
@@ -61,5 +64,10 @@ func _on_TextureButton_pressed():
 	$Bio/NewInfoIcon.hide()
 
 
-func _on_AnimationPlayer_animation_finished(_anim_name:String) -> void:
-	emit_signal("round_ended")
+func _on_AnimationPlayer_animation_finished(anim_name:String) -> void:
+	if anim_name == "win" or anim_name == "lose":
+		emit_signal("round_ended")
+	elif anim_name == "scooch_out":
+		emit_signal("scooched_out")
+	elif anim_name == "scooch_in":
+		emit_signal("scooched_in")
