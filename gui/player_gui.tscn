@@ -39,6 +39,7 @@ margin_left = -243.0
 margin_top = -26.0
 margin_right = -37.0
 margin_bottom = 180.0
+hint_tooltip = "View player info."
 mouse_default_cursor_shape = 2
 texture_normal = ExtResource( 1 )
 expand = true
