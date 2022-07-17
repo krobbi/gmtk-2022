@@ -43,8 +43,8 @@ func _get_bio(night_number: int, round_number: int) -> String:
 					return "This is tension she hasn't felt in years, day 4 and striking it neutral, the only thing on her mind is how will tonight go."
 		5:
 			return "The only thing on her mind is the dice..."
-		
-		return "She's not sure what she's doing here, it's probably a bug."
+	
+	return "She's not sure what she's doing here, it's probably a bug."
 
 
 func _get_strategy(_night_number: int) -> int:
