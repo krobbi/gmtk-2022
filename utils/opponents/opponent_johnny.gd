@@ -23,7 +23,7 @@ func _get_bio(night_number: int, round_number: int) -> String:
 	elif night_number == 2:
 		return "Never gambled before and revelling in the previous win. He is already hooked."
 	
-	var has_won: bool = GameData.get_total_balance("johnny", night_number - 1) >= GameData.get_total_balance("johnny", night_number_val - 2)
+	var has_won: bool = GameData.get_total_balance("johnny", night_number - 1) >= GameData.get_total_balance("johnny", night_number - 2)
 	
 	match night_number:
 		3:
