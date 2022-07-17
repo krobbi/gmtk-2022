@@ -28,6 +28,20 @@ func _input(event: InputEvent) -> void:
 		emit_signal("odds_selected", number)
 
 
+func get_actual_min() -> int:
+	if min_value < 4:
+		return 4
+	else:
+		return min_value
+
+
+func get_actual_max() -> int:
+	if max_value > 24:
+		return 24
+	else:
+		return max_value
+
+
 func set_controls(value):
 	controls_disabled = value
 
