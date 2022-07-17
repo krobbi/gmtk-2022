@@ -15,6 +15,16 @@ func _ready():
 	display_credit(0)
 
 
+func _input(event: InputEvent) -> void:
+	if Input.is_action_just_pressed("ui_cancel"):
+		var bio: Control = get_node("../bio")
+		
+		if bio.is_visible_in_tree():
+			bio._on_close_button_pressed()
+		else:
+			_on_TextureButton_pressed()
+
+
 func display_win_lose(value: bool) -> void:
 	speech_bubble.hide()
 	
