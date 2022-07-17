@@ -30,12 +30,19 @@ func set_number(value: int) -> void:
 	var length: int = string.length()
 	var offset: float = (length - 1) * -100.0
 	
+	if number_scale < 0.7:
+		offset = (length - 1) * -50.0
+	
 	for i in range(length):
 		var sprite: Sprite = Sprite.new()
 		sprite.texture = TEXTURE
 		sprite.hframes = 10
 		sprite.frame = int(string[i])
 		sprite.position.x = offset + i * 200.0
+		
+		if number_scale < 0.7:
+			sprite.position.x = offset + i * 100.0
+		
 		sprite.scale = Vector2(number_scale, number_scale)
 		sprites.push_back(sprite)
 		add_child(sprite)
