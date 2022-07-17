@@ -4,18 +4,18 @@ func _get_profile_key() -> String:
 	return "kate"
 
 
-func _get_should_appear(night_number: int) -> bool:
-	return night_number == 5
+func _get_should_appear(_night_number: int) -> bool:
+	return true
 
 
 func _get_bio(_night_number: int, round_number: int) -> String:
 	match round_number:
 		1:
-			"$Kate,18,Middle"
+			return "$Kate,18,Middle"
 		2:
-			"She is visibly uncomfortable and doesn't want to be here."
+			return "She is visibly uncomfortable and doesn't want to be here."
 		3:
-			"She is trying to earn money to pay for a life-saving surgery that her insurance won't cover."
+			return "She is trying to earn money to pay for a life-saving surgery that her insurance won't cover."
 	
 	return "Kate is wondering why this bugged message appears."
 
