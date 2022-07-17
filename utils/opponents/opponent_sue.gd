@@ -7,12 +7,12 @@ func _get_profile_key() -> String:
 func _get_should_appear(night_number: int) -> bool:
 	if night_number == 1:
 		return true
-	
-	return GameData.get_night_balance("sue", 1) > 0
+	else:
+		return GameData.get_night_balance("sue", 1) > 0
 
 
 func _get_bio(night_number: int, round_number: int) -> String:
-	var balance: int = int(sign(GameData.get_total_balance("sue", night_number)))
+	var balance: int = int(sign(GameData.get_total_balance("sue", night_number - 1)))
 	
 	match night_number:
 		1:
