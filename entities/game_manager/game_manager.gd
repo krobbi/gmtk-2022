@@ -49,19 +49,24 @@ func _ready() -> void:
 
 # Gets the opponent queue for the current night:
 func get_opponent_queue() -> Array:
-	match night_number:
-		1:
-			return ["sue", "albert", "johnny"]
-		2:
-			return ["sue", "albert", "johnny"]
-		3:
-			return ["sue", "albert", "johnny"]
-		4:
-			return ["sue", "albert", "johnny"]
-		5:
-			return ["sue", "albert", "johnny"]
-		_:
-			return ["sue", "albert", "johnny"]
+	var queue: Array = []
+	
+	for i in range(night_number):
+		match i + 1:
+			1:
+				queue.append_array(["sue", "albert", "johnny"])
+			2:
+				queue.append_array(["jimmy", "karen"])
+			4:
+				queue.push_back("marcus")
+			5:
+				queue.push_back("kate")
+	
+	for i in range(queue.size() - 1, -1, -1):
+		if not GameData.get_should_appear(queue[i], night_number):
+			queue.remove(i)
+	
+	return queue
 
 
 # Gets the AI's current strategy:

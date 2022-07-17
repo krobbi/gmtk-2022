@@ -27,6 +27,10 @@ func get_total_balance(key: String, night_number: int) -> int:
 	return balance
 
 
+func get_should_appear(key: String, night_number: int) -> bool:
+	return opponents[key]._get_should_appear(night_number)
+
+
 func get_strategy(key: String, night_number: int) -> int:
 	return opponents[key]._get_strategy(night_number)
 
