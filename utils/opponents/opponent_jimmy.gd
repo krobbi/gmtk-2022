@@ -4,7 +4,7 @@ func _get_profile_key() -> String:
 	return "jimmy"
 
 
-func _get_should_appear(night_number: int):
+func _get_should_appear(night_number: int) -> bool:
 	if night_number == 1 or GameData.get_total_balance("jimmy", night_number - 1) >= 0:
 		return false
 	
