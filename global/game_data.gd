@@ -2,6 +2,11 @@ extends Node
 
 var night: int = 0
 
+#Settigs
+var setting_screenShake: bool = true
+var setting_quickRoll: bool = false
+var setting_music: bool = true
+
 var opponents: Dictionary = {
 	"sue": load("res://utils/opponents/opponent_sue.gd").new(),
 	"albert": load("res://utils/opponents/opponent_albert.gd").new(),
