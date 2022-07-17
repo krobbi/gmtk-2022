@@ -101,6 +101,7 @@ func get_ai_choice() -> bool:
 # Begins a new night:
 func begin_night(night_number_val: int) -> void:
 	night_number = night_number_val
+	night_number = GameData.night
 	mana = 20
 	mana_bar.changeMana(mana)
 	opponent_queue = get_opponent_queue()
@@ -110,6 +111,7 @@ func begin_night(night_number_val: int) -> void:
 # Begins a new game of higher or lower:
 func begin_game() -> void:
 	if opponent_queue.empty():
+		get_tree().change_scene("res://scenes/night_transition/night_transition.tscn")
 		return # TODO: End night.
 	
 	current_opponent = opponent_queue[0]
@@ -170,13 +172,13 @@ func _on_odds_selected(new_odds: int) -> void:
 	print("Selected odds of %d" % new_odds)
 	round_count -= 1
 	emit_signal("round_count_changed", round_count)
-	die_spawner.spawn_dice()
+	die_spawner.spawn_dice(Input.is_key_pressed(KEY_SHIFT))
 
 
 # Runs when a numnber is finished rolling:
 func _on_number_rolled(new_number: int) -> void:
 	if new_number == number:
-		die_spawner.spawn_dice() # Reroll:
+		die_spawner.spawn_dice(Input.is_key_pressed(KEY_SHIFT)) # Reroll:
 		return
 	
 	var was_higher: bool = new_number > number

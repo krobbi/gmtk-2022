@@ -2,7 +2,7 @@ extends Node2D
 
 var menu_option: int = 0 # Play: 0, Tutorial:1, Options: 2, Credits: 3 
 onready var options = [$play, $tutorial, $options, $credits]
-onready var scenes = ["res://scenes/test_table/test_table.tscn",
+onready var scenes = ["res://scenes/night_transition/night_transition.tscn",
 					  "res://scenes/tutorial/tutorial.tscn",
 					  "res://scenes/options/options.tscn",
 					  "res://scenes/credits/credits.tscn"]
@@ -25,6 +25,9 @@ func move_cursor():
 	$ClackPlayer.play()
 
 func load_scene():
+	if menu_option == 0:
+		GameData.reset()
+	
 	get_tree().change_scene(scenes[menu_option])
 
 func _input(event: InputEvent) -> void:
