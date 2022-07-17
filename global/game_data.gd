@@ -6,7 +6,7 @@ var house_balance: int = 0
 #Settigs
 var setting_screenShake: bool = true
 var setting_quickRoll: bool = false
-var setting_music: bool = true
+var setting_music: bool = true setget set_setting_music
 
 var opponents: Dictionary = {
 	"sue": load("res://utils/opponents/opponent_sue.gd").new(),
@@ -33,6 +33,15 @@ func reset() -> void:
 		"kate": load("res://utils/opponents/opponent_kate.gd").new(),
 	}
 	bios = {}
+
+
+func set_setting_music(value: bool) -> void:
+	setting_music = value
+	
+	if setting_music:
+		$MusicPlayer.play()
+	else:
+		$MusicPlayer.stop()
 
 
 func get_profile_key(key: String) -> String:
