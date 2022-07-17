@@ -1,6 +1,7 @@
 extends Control
 
 signal open_bio()
+signal round_ended
 
 onready var profile_button: TextureButton = $face/TextureButton
 onready var speech_bubble: Sprite = $textBox
@@ -9,6 +10,15 @@ onready var credit_sprites: Array = $Score.get_children()
 
 func _ready():
 	display_credit(0)
+
+
+func display_win_lose(value: bool) -> void:
+	speech_bubble.hide()
+	
+	if value:
+		$AnimationPlayer.play("win")
+	else:
+		$AnimationPlayer.play("lose")
 
 
 func display_player(value: String) -> void:
@@ -49,3 +59,7 @@ func display_new_info() -> void:
 func _on_TextureButton_pressed():
 	emit_signal("open_bio")
 	$Bio/NewInfoIcon.hide()
+
+
+func _on_AnimationPlayer_animation_finished(_anim_name:String) -> void:
+	emit_signal("round_ended")

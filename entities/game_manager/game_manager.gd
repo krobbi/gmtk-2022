@@ -155,15 +155,22 @@ func select_odds() -> void:
 func finish_round(was_won: bool) -> void:
 	GameData.add_balance(current_opponent, night_number, 1 if was_won else -1)
 	emit_signal("balance_changed", GameData.get_total_balance(current_opponent, night_number))
-	emit_signal("round_finished", was_won)
 	
 	if was_won:
 		GameData.house_balance -= 1
 	else:
 		GameData.house_balance += 1
 	
-	emit_signal("house_balance_changed", GameData.house_balance)
+	# Special case for Johnny and Jimmy:
+	if round_count <= 0 and current_opponent == "johnny":
+		var johnny_balance: int = GameData.get_total_balance("johnny", night_number)
+		GameData.opponents["jimmy"].scores[night_number - 1] = johnny_balance
 	
+	emit_signal("house_balance_changed", GameData.house_balance)
+	emit_signal("round_finished", was_won)
+
+
+func _on_round_end() -> void:
 	if round_count > 0:
 		begin_round()
 	else:
