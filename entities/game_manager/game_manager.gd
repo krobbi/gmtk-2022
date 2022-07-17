@@ -4,6 +4,7 @@ extends Node
 signal higher_lower_chosen(is_higher)
 signal number_changed(number)
 signal balance_changed(balance)
+signal house_balance_changed(house_balance)
 signal round_count_changed(round_count)
 signal player_changed(player_name)
 signal player_count_changed(player_count)
@@ -156,6 +157,13 @@ func finish_round(was_won: bool) -> void:
 	emit_signal("balance_changed", GameData.get_total_balance(current_opponent, night_number))
 	emit_signal("round_finished", was_won)
 	
+	if was_won:
+		GameData.house_balance -= 1
+	else:
+		GameData.house_balance += 1
+	
+	emit_signal("house_balance_changed", GameData.house_balance)
+	
 	if round_count > 0:
 		begin_round()
 	else:
@@ -178,13 +186,13 @@ func _on_odds_selected(new_odds: int) -> void:
 	print("Selected odds of %d" % new_odds)
 	round_count -= 1
 	emit_signal("round_count_changed", round_count)
-	die_spawner.spawn_dice(Input.is_key_pressed(KEY_SHIFT))
+	die_spawner.spawn_dice(GameData.setting_quickRoll)
 
 
 # Runs when a numnber is finished rolling:
 func _on_number_rolled(new_number: int) -> void:
 	if new_number == number:
-		die_spawner.spawn_dice(Input.is_key_pressed(KEY_SHIFT)) # Reroll:
+		die_spawner.spawn_dice(GameData.setting_quickRoll) # Reroll:
 		return
 	
 	var was_higher: bool = new_number > number
