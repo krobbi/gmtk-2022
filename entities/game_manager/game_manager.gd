@@ -53,15 +53,15 @@ func get_opponent_queue() -> Array:
 		1:
 			return ["sue", "albert", "johnny"]
 		2:
-			return ["sue"]
+			return ["sue", "albert", "johnny"]
 		3:
-			return ["sue"]
+			return ["sue", "albert", "johnny"]
 		4:
-			return ["sue"]
+			return ["sue", "albert", "johnny"]
 		5:
-			return ["sue"]
+			return ["sue", "albert", "johnny"]
 		_:
-			return ["sue"]
+			return ["sue", "albert", "johnny"]
 
 
 # Gets the AI's current strategy:
