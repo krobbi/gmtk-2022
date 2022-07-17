@@ -42,6 +42,10 @@ func display_credit(value: int) -> void:
 		credit_sprites[i].visible = i < abs_value
 
 
+func display_new_info() -> void:
+	$Bio/NewInfoIcon.show()
+
+
 func _on_TextureButton_pressed():
 	emit_signal("open_bio")
 	$Bio/NewInfoIcon.hide()

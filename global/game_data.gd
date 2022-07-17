@@ -11,6 +11,7 @@ var opponents: Dictionary = {
 	"marcus": load("res://utils/opponents/opponent_marcus.gd").new(),
 	"kate": load("res://utils/opponents/opponent_kate.gd").new(),
 }
+var bios: Dictionary = {}
 
 # New game:
 func reset() -> void:
@@ -24,6 +25,7 @@ func reset() -> void:
 		"marcus": load("res://utils/opponents/opponent_marcus.gd").new(),
 		"kate": load("res://utils/opponents/opponent_kate.gd").new(),
 	}
+	bios = {}
 
 
 func get_profile_key(key: String) -> String:
@@ -55,5 +57,28 @@ func get_ending(key: String) -> Array:
 	return opponents[key]._get_ending()
 
 
+func get_bio(key: String) -> Dictionary:
+	return bios.get(key, {})
+
+
 func add_balance(key: String, night_number: int, amount: int) -> void:
 	opponents[key].scores[night_number - 1] += amount
+
+
+func update_bio(key: String, night_number: int, round_number: int) -> void:
+	var message: String = opponents[key]._get_bio(night_number, round_number)
+	
+	if not bios.has(key):
+		bios[key] = {}
+	
+	if message.begins_with("$"):
+		var sections: PoolStringArray = message.substr(1).split(",")
+		bios[key]["name"] = sections[0]
+		bios[key]["age"] = sections[1]
+		bios[key]["class"] = sections[2]
+		return
+	
+	if not bios[key].has("bio"):
+		bios[key]["bio"] = message
+	else:
+		bios[key]["status"] = message

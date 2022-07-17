@@ -7,6 +7,7 @@ signal balance_changed(balance)
 signal round_count_changed(round_count)
 signal player_changed(player_name)
 signal player_count_changed(player_count)
+signal bio_changed(bio)
 signal round_finished(was_won)
 
 enum AI_STRATEGY {GOOD, BAD, RANDOM}
@@ -132,6 +133,11 @@ func begin_game() -> void:
 func begin_round() -> void:
 	is_expecting_higher = get_ai_choice()
 	emit_signal("higher_lower_chosen", is_expecting_higher)
+	
+	var round_number: int = (3 - round_count) + 1
+	GameData.update_bio(current_opponent, night_number, round_number)
+	emit_signal("bio_changed", GameData.get_bio(current_opponent))
+	
 	odds = 14
 	odds_selector.set_number(odds)
 	odds_selector.min_value = odds - mana
