@@ -53,7 +53,7 @@ margin_top = 307.0
 margin_right = 307.0
 margin_bottom = 361.0
 custom_fonts/font = ExtResource( 2 )
-text = "Ecenomic Status:"
+text = "Economic Status:"
 
 [node name="status_set" type="Label" parent="."]
 margin_left = 320.0

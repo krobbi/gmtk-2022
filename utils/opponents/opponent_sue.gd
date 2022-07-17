@@ -58,7 +58,7 @@ func _get_ending() -> Array:
 		if balance >= 8:
 			return ["Sue's grandson got everything he wanted for his birthday this year, though his parents were furious at Sue after figuring out just where she got all this money. They managed to convince her to go back into rehab."]
 		elif balance >= 4 and balance <= 7:
-			return ["Sue’s grandson got the gift he wanted, but for many years her face became a very common appearance at the casino."]
+			return ["Sue's grandson got the gift he wanted, but for many years her face became a very common appearance at the casino."]
 		elif balance >= 0 and balance <= 3:
 			return ["Sue continued trying to earn enough for that gift, but eventually slipped further and further in debt she could not afford."]
 		elif balance >= -7 and balance <= -1:
