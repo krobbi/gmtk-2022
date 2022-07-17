@@ -8,7 +8,7 @@ const FloatingNumberScene: PackedScene = preload(
 )
 
 const CENTER: Vector2 = Vector2(960.0, 540.0)
-const STANDARD_DEVIATION: float = 4.1
+const STANDARD_DEVIATION: float = 3.4
 
 var odds: int = 14
 var floating_numbers: Array = []
