@@ -69,10 +69,10 @@ mana = 10
 [node name="oddsSelector" parent="." instance=ExtResource( 9 )]
 
 [node name="CasinoGui" parent="." instance=ExtResource( 11 )]
-margin_left = 1198.0
-margin_top = 867.0
-margin_right = 1198.0
-margin_bottom = 867.0
+margin_left = 1669.0
+margin_top = 881.0
+margin_right = 1669.0
+margin_bottom = 881.0
 
 [node name="bio" parent="." instance=ExtResource( 12 )]
 visible = false

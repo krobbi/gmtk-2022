@@ -57,12 +57,12 @@ func set_number(value: int) -> void:
 		value = max_value
 	
 	print(min_value)
-	if value == min_value:
+	if value == get_actual_min():
 		get_node("../leftButton").hide()
 	else:
 		get_node("../leftButton").show()
 
-	if value == max_value:
+	if value == get_actual_max():
 		get_node("../rightButton").hide()
 	else:
 		get_node("../rightButton").show()
