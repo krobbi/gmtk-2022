@@ -1,7 +1,10 @@
 extends Node
 
+const TARGETS: Array = [2, 4, 6, 8, 10]
+
 var night: int = 0
 var house_balance: int = 0
+var is_on_target: bool = true
 
 #Settigs
 var setting_screenShake: bool = true
@@ -23,6 +26,7 @@ var bios: Dictionary = {}
 func reset() -> void:
 	night = 0
 	house_balance = 0
+	is_on_target = true
 	opponents = {
 		"sue": load("res://utils/opponents/opponent_sue.gd").new(),
 		"albert": load("res://utils/opponents/opponent_albert.gd").new(),

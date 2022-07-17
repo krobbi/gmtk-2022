@@ -113,8 +113,11 @@ func begin_night(night_number_val: int) -> void:
 # Begins a new game of higher or lower:
 func begin_game() -> void:
 	if opponent_queue.empty():
+		if GameData.house_balance < GameData.TARGETS[night_number - 1]:
+			GameData.is_on_target = false
+		
 		get_tree().change_scene("res://scenes/night_transition/night_transition.tscn")
-		return # TODO: End night.
+		return
 	
 	current_opponent = opponent_queue[0]
 	opponent_queue.remove(0)
@@ -141,8 +144,8 @@ func begin_round() -> void:
 	
 	odds = 14
 	odds_selector.set_number(odds)
-	odds_selector.min_value = odds - mana
-	odds_selector.max_value = odds + mana
+	odds_selector.min_value = odds - mana * 2
+	odds_selector.max_value = odds + mana * 2
 	select_odds()
 
 
@@ -178,13 +181,13 @@ func _on_round_end() -> void:
 
 
 func _on_odds_hovered(new_odds: int) -> void:
-	var cost: int = int(abs(new_odds - odds))
+	var cost: int = int(abs(new_odds - odds) / 2.0)
 	mana_bar.highlight_cost(cost)
 
 
 # Runs when the player selects odds:
 func _on_odds_selected(new_odds: int) -> void:
-	var cost: int = int(abs(new_odds - odds))
+	var cost: int = int(abs(new_odds - odds) / 2.0)
 	odds = new_odds
 	mana -= cost
 	mana_bar.changeMana(mana)

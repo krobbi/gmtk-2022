@@ -23,13 +23,48 @@ func _ready() -> void:
 
 func get_character_lines(character: String) -> Array:
 	if character == "you":
-		return ["This text shows at the end of the things", "It will eventually changed based on something"]
+		if not GameData.is_on_target:
+			return ["Your performance was too low. The casino is not happy, and you won't be around to see the next shift."]
+		elif GameData.house_balance >= 25:
+			return [
+				"You earned more than just your freedom, you excelled! The money was rolling in throughout the entire week.",
+				"You are free now, but you like it here. The money. The fame. The attention.",
+				"Perhaps you will stay, just for one more week."
+			]
+		elif GameData.house_balance >= 20:
+			return [
+				"You did well. While you may not have been able to help all those who needed it, you have earned your freedom.",
+				"You are free to spend your days as you wish."
+			]
+		else:
+			return [
+				"While you have passed, the casino is not too pleased with your performance.",
+				"You are forced to stay in servitude."
+			]
 	
 	return GameData.get_ending(character)
 
 
-func has_seen_character(_character: String) -> bool:
-	return true
+func has_seen_character(character: String) -> bool:
+	if character == "you":
+		return true
+	elif not GameData.is_on_target:
+		return false
+	elif character == "jimmy":
+		var has_inherited_loss: bool = false
+		
+		for score in GameData.opponents["jimmy"].scores:
+			if score != 0:
+				if has_inherited_loss:
+					return true
+				else:
+					has_inherited_loss = true
+	
+	for score in GameData.opponents[character].scores:
+		if score != 0:
+			return true
+	
+	return false
 
 
 func next() -> void:

@@ -20,9 +20,9 @@ func _input(event: InputEvent) -> void:
 	if controls_disabled:
 		return
 	if event.is_action_pressed("ui_left"):
-		set_number(number - 1)
+		set_number(number - 2)
 	elif event.is_action_pressed("ui_right"):
-		set_number(number + 1)
+		set_number(number + 2)
 	elif event.is_action_pressed("ui_accept"):
 		set_process_input(false)
 		emit_signal("odds_selected", number)
@@ -83,9 +83,9 @@ func _on_rollButton_pressed():
 
 func _on_leftButton_pressed():
 	if not controls_disabled and is_processing_input():
-		set_number(number -1)
+		set_number(number - 2)
 
 
 func _on_rightButton_pressed():
 	if not controls_disabled and is_processing_input():
-		set_number(number +1)
+		set_number(number + 2)
