@@ -32,13 +32,20 @@ func _physics_process(_delta: float) -> void:
 
 
 # Spawns dice:
-func spawn_dice() -> void:
+func spawn_dice(is_fast: bool = false) -> void:
 	for i in range(4):
 		var die: Die = DieScene.instance()
 		dice.push_back(die)
 		die.position = Vector2(480.0 + float(i * 320), 540.0)
 		add_child(die)
-		die.spawn()
 	
-	spawn_player.play()
+	if is_fast:
+		for die in dice:
+			die.state = Die.State.ROLLING
+	else:
+		for die in dice:
+			die.spawn()
+		
+		spawn_player.play()
+	
 	set_physics_process(true)

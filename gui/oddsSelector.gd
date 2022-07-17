@@ -76,12 +76,16 @@ func set_number(value: int) -> void:
 
 
 func _on_rollButton_pressed():
-	emit_signal("odds_selected", number)
+	if not controls_disabled and is_processing_input():
+		set_process_input(false)
+		emit_signal("odds_selected", number)
 
 
 func _on_leftButton_pressed():
-	set_number(number -1)
+	if not controls_disabled and is_processing_input():
+		set_number(number -1)
 
 
 func _on_rightButton_pressed():
-	set_number(number +1)
+	if not controls_disabled and is_processing_input():
+		set_number(number +1)

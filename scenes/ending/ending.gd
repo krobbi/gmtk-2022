@@ -25,10 +25,7 @@ func get_character_lines(character: String) -> Array:
 	if character == "you":
 		return ["This text shows at the end of the things", "It will eventually changed based on something"]
 	
-	return [
-		"Example line for %s!" % character,
-		"Second line for %s!" % character,
-	]
+	return GameData.get_ending(character)
 
 
 func has_seen_character(_character: String) -> bool:
@@ -43,7 +40,7 @@ func next() -> void:
 			active_bio = null
 			next()
 	elif event_counter >= events.size():
-		get_tree().change_scene_to(preload("res://scenes/test_table/test_table.tscn"))
+		get_tree().change_scene_to(preload("res://scenes/title_screen/title_screen.tscn"))
 	elif events[event_counter] == "&":
 		for bio in bios:
 			bio.queue_free()
