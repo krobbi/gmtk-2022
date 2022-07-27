@@ -16,6 +16,8 @@ func _ready() -> void:
 	yield(get_tree().create_timer(3.0), "timeout")
 	
 	if is_ending:
+		# warning-ignore: RETURN_VALUE_DISCARDED
 		get_tree().change_scene("res://scenes/ending/ending.tscn")
 	else:
+		# warning-ignore: RETURN_VALUE_DISCARDED
 		get_tree().change_scene("res://scenes/test_table/test_table.tscn")

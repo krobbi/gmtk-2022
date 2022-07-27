@@ -118,6 +118,7 @@ func begin_game() -> void:
 		if GameData.house_balance < GameData.TARGETS[night_number - 1]:
 			GameData.is_on_target = false
 		
+		# warning-ignore: RETURN_VALUE_DISCARDED
 		get_tree().change_scene("res://scenes/night_transition/night_transition.tscn")
 		return
 	
@@ -202,7 +203,6 @@ func _on_odds_selected(new_odds: int) -> void:
 	mana_bar.changeMana(mana)
 	mana_bar.unhighlight_cost()
 	floating_number_spawner.odds = odds
-	print("Selected odds of %d" % new_odds)
 	round_count -= 1
 	emit_signal("round_count_changed", round_count)
 	die_spawner.spawn_dice(GameData.setting_quickRoll)

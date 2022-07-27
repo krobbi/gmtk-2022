@@ -10,7 +10,7 @@ var number: int = 14 setget set_number
 var min_value: int = 4
 var max_value: int = 24
 
-func _ready():
+func _ready() -> void:
 	set_process_input(false)
 	var bio = get_node("../bio")
 	bio.connect("toggle_control", self, "set_controls")
@@ -42,8 +42,9 @@ func get_actual_max() -> int:
 		return max_value
 
 
-func set_controls(value):
+func set_controls(value: bool) -> void:
 	controls_disabled = value
+
 
 func set_number(value: int) -> void:
 	if value < 4:
@@ -56,7 +57,6 @@ func set_number(value: int) -> void:
 	elif value > max_value:
 		value = max_value
 	
-	print(min_value)
 	if value == get_actual_min():
 		get_node("../leftButton").hide()
 	else:
@@ -75,17 +75,17 @@ func set_number(value: int) -> void:
 	emit_signal("odds_hovered", number)
 
 
-func _on_rollButton_pressed():
+func _on_rollButton_pressed() -> void:
 	if not controls_disabled and is_processing_input():
 		set_process_input(false)
 		emit_signal("odds_selected", number)
 
 
-func _on_leftButton_pressed():
+func _on_leftButton_pressed() -> void:
 	if not controls_disabled and is_processing_input():
 		set_number(number - 2)
 
 
-func _on_rightButton_pressed():
+func _on_rightButton_pressed() -> void:
 	if not controls_disabled and is_processing_input():
 		set_number(number + 2)

@@ -1,19 +1,45 @@
 [gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://scenes/main_menu_braches.gd" type="Script" id=1]
-[ext_resource path="res://resources/textures/disclaimer.png" type="Texture" id=2]
+[ext_resource path="res://resources/fonts/font_disclaimer.tres" type="DynamicFont" id=2]
 
-[node name="Node2D" type="Node2D"]
+[node name="Disclaimer" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
 script = ExtResource( 1 )
-
-[node name="Sprite" type="Sprite" parent="."]
-position = Vector2( 970.5, 648.5 )
-scale = Vector2( 1.52422, 1.79861 )
-texture = ExtResource( 2 )
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 5.0
 one_shot = true
 autostart = true
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_min_size = Vector2( 1920, 180 )
+color = Color( 0.0431373, 0.00392157, 0.0313726, 1 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Label" type="Label" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 256.0
+margin_top = 128.0
+margin_right = -256.0
+margin_bottom = -128.0
+custom_fonts/font = ExtResource( 2 )
+text = "This game depicts gambling and gambling addictions. It should not be used as an accurate depiction of these issues or the conclusions it makes.
+
+If you are struggling with a gambling addiction, or any addiction, please seek professional help."
+align = 1
+autowrap = true
+__meta__ = {
+"_edit_lock_": true
+}
 
 [connection signal="timeout" from="Timer" to="." method="_on_back_pressed"]

@@ -75,6 +75,7 @@ func next() -> void:
 			active_bio = null
 			next()
 	elif event_counter >= events.size():
+		# warning-ignore: RETURN_VALUE_DISCARDED
 		get_tree().change_scene_to(preload("res://scenes/title_screen/title_screen.tscn"))
 	elif events[event_counter] == "&":
 		for bio in bios:

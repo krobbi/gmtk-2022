@@ -7,4 +7,5 @@ func _ready() -> void:
 
 
 func _on_back_pressed():
-	get_tree().change_scene("res://scenes/title_screen/title_screen.tscn") # Replace with function body.
+	# warning-ignore: RETURN_VALUE_DISCARDED
+	get_tree().change_scene("res://scenes/title_screen/title_screen.tscn")
