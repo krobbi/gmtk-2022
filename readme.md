@@ -2,10 +2,21 @@
 Copyright &copy; 2022 [Ruxaroh](https://github.com/ruxaroh),
 [Krobbizoid](https://github.com/krobbi).
 
+# Contents
+1. [About](#about)
+2. [Play Now](#play-now)
+3. [Disclaimer](#disclaimer)
+4. [Description](#description)
+5. [Credits](#credits)
+6. [Exporting](#exporting)
+
 # About
 The House Always Wins is a game originally created within 48 hours for the
 [GMTK Game Jam 2022](https://itch.io/jam/gmtk-jam-2022). The theme was
 "Roll of the Dice".
+
+__Due to the short deadline of the initial project, some of the file structure,
+code, and commit messages may not be up to our usual standards.__
 
 You play as a magical creature who has been captured by a casino. You can read
 the minds of patrons and shift the odds of a simple dice game to influence
@@ -19,6 +30,13 @@ enough money to survive until the end of the week.
 # Play Now
 The House Always Wins can be played in the browser on deskop at
 https://ruxaroh.itch.io/the-house-always-wins.
+
+# Disclaimer
+The game depicts gambling and gambling addictions. It should not be used as an
+accurate depiction of these issues or the conclusions it makes.
+
+If you are struggling with a gambling addiction, or any addiction, please seek
+professional help.
 
 # Description
 Control fate by shifting the odds in your favour!
@@ -34,13 +52,6 @@ have an impact on the winners and losers...
 
 Can you earn your freedom from the casino? At what cost would it come to those
 around you?
-
-# Disclaimer
-The game depicts gambling and gambling addictions. It should not be used as an
-accurate depiction of these issues or the conclusions it makes.
-
-If you are struggling with a gambling addiction, or any addiction, please seek
-professional help.
 
 # Credits
 
@@ -59,3 +70,15 @@ https://fonts.google.com/specimen/Edu+SA+Beginner
 Ghostrifter - On My Way  
 https://soundcloud.com/ghostrifter-official/on-my-way  
 Creative Commons CC BY-SA 3.0: https://creativecommons.org/licenses/by-sa/3.0
+
+# Exporting
+To export the game, use Godot Engine `3.4.4`. Make sure you have the following
+empty directories inside the Godot project:
+
+* `res://ignore/builds/web/`
+* `res://ignore/builds/windows/`
+* `res://ignore/builds/mac/`
+* `res://ignore/builds/linux/`
+
+An empty `.gdignore` file should also be included in `res://ignore/` to prevent
+Godot Engine from including resources from here in the game.
