@@ -20,9 +20,9 @@ func _get_bio(night_number: int, round_number: int) -> String:
 					return "He was given money from his father to support himself here. He intends to multiply those savings this evening."
 		5:
 			if GameData.get_night_balance("marcus", 4) >= 0:
-				return "Marcus is riding high on his win, thinking about what he can spend this extra income on."
+				return "He's riding high on his win, thinking about what he can spend his extra income on."
 			else:
-				return "Marcus is worried about his losses, if his father finds out he could be cut off. The risk excites him."
+				return "He is worried about his losses, if his father finds out his funds could be cut off. The risk excites him."
 	
 	return "Marcus doesn't know what he's doing here. It's probably a bug."
 
@@ -43,7 +43,7 @@ func _get_ending() -> Array:
 	elif balance <= -4:
 		return [
 			"After his drastic losses, Marcus had to tell his parents he was out of money to live on. They immediately cut him off.",
-			"A few years later, Marcus ends up on the streets, never coming close to what he was capable of achieving."
+			"A few years later, Marcus ended up on the streets, never coming close to what he was capable of achieving."
 		]
 	
 	return ["Marcus found a bugged ending!"]

@@ -1,6 +1,7 @@
 extends Node
 
 signal shake_camera_request(amount) # warning-ignore: UNUSED_SIGNAL
+signal move_camera_request(height) # warning-ignore: UNUSED_SIGNAL
 
 func safe_connect(signal_name: String, target: Object, method: String) -> void:
 	var error: int = connect(signal_name, target, method)

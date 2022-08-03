@@ -1,51 +1,63 @@
 [gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://resources/textures/bio.png" type="Texture" id=1]
-[ext_resource path="res://resources/fonts/font_64.tres" type="DynamicFont" id=2]
+[ext_resource path="res://resources/fonts/font_40.tres" type="DynamicFont" id=2]
 [ext_resource path="res://gui/bio.gd" type="Script" id=3]
 
 [node name="bio" type="Control"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_right = -1128.0
-margin_bottom = -242.0
+margin_right = 792.0
+margin_bottom = 838.0
 script = ExtResource( 3 )
+__meta__ = {
+"_edit_lock_": true
+}
 
-[node name="Sprite" type="Sprite" parent="."]
-position = Vector2( 500.5, 529.438 )
-scale = Vector2( 3.79167, 3.79167 )
+[node name="TextureRect" type="TextureRect" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+rect_scale = Vector2( 3.792, 3.792 )
 texture = ExtResource( 1 )
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="close_button" type="TextureButton" parent="."]
 margin_left = 940.0
 margin_top = 11.0
 margin_right = 988.0
 margin_bottom = 60.0
+hint_tooltip = "Close bio."
 mouse_default_cursor_shape = 2
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="name_set" type="Label" parent="."]
-margin_left = 8.0
-margin_top = 4.0
-margin_right = 468.0
-margin_bottom = 54.0
+margin_left = 15.0
+margin_top = 8.0
+margin_right = 475.0
+margin_bottom = 62.0
 custom_fonts/font = ExtResource( 2 )
-text = "Name Here"
+text = "Unknown Patron"
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="age_label" type="Label" parent="."]
-margin_left = 63.0
-margin_top = 173.0
-margin_right = 130.0
-margin_bottom = 227.0
+margin_left = 45.0
+margin_top = 175.0
+margin_right = 112.0
+margin_bottom = 229.0
 custom_fonts/font = ExtResource( 2 )
 text = "Age:"
 
 [node name="age_set" type="Label" parent="."]
-margin_left = 142.0
-margin_top = 178.0
-margin_right = 207.0
-margin_bottom = 232.0
+margin_left = 120.0
+margin_top = 175.0
+margin_right = 255.0
+margin_bottom = 229.0
 custom_fonts/font = ExtResource( 2 )
-text = "00"
+text = "Unknown"
 
 [node name="status_label" type="Label" parent="."]
 margin_left = 45.0
@@ -53,15 +65,15 @@ margin_top = 307.0
 margin_right = 307.0
 margin_bottom = 361.0
 custom_fonts/font = ExtResource( 2 )
-text = "Economic Status:"
+text = "Economic status:"
 
 [node name="status_set" type="Label" parent="."]
-margin_left = 320.0
-margin_top = 311.0
-margin_right = 506.0
-margin_bottom = 365.0
+margin_left = 310.0
+margin_top = 307.0
+margin_right = 496.0
+margin_bottom = 361.0
 custom_fonts/font = ExtResource( 2 )
-text = "Lower Class"
+text = "Unknown"
 
 [node name="bio_label" type="Label" parent="."]
 margin_left = 44.0
@@ -70,33 +82,33 @@ margin_right = 286.0
 margin_bottom = 463.0
 rect_pivot_offset = Vector2( 148, 76 )
 custom_fonts/font = ExtResource( 2 )
-text = "Short Bio:"
+text = "Bio:"
 
 [node name="ibo_set" type="Label" parent="."]
-margin_left = 41.0
+margin_left = 45.0
 margin_top = 453.0
-margin_right = 832.0
-margin_bottom = 696.0
+margin_right = 835.0
+margin_bottom = 698.0
 custom_fonts/font = ExtResource( 2 )
-text = "You do not yet have this information..."
+text = "You have not yet read this information..."
 autowrap = true
 
 [node name="status_label2" type="Label" parent="."]
-margin_left = 38.0
+margin_left = 45.0
 margin_top = 726.0
-margin_right = 280.0
+margin_right = 287.0
 margin_bottom = 780.0
 rect_pivot_offset = Vector2( 148, 76 )
 custom_fonts/font = ExtResource( 2 )
 text = "Status:"
 
 [node name="status_set2" type="Label" parent="."]
-margin_left = 39.0
+margin_left = 45.0
 margin_top = 775.0
-margin_right = 821.0
-margin_bottom = 1000.0
+margin_right = 835.0
+margin_bottom = 1020.0
 custom_fonts/font = ExtResource( 2 )
-text = "You do not yet have this information..."
+text = "You have not yet read this information..."
 autowrap = true
 
 [connection signal="pressed" from="close_button" to="." method="_on_close_button_pressed"]

@@ -44,7 +44,7 @@ func display_bio(bio: Dictionary) -> void:
 	if bio.has("name"):
 		$name_set.text = bio["name"]
 	else:
-		$name_set.text = "Unknown"
+		$name_set.text = "Unknown Patron"
 	
 	if bio.has("age"):
 		$age_set.text = bio["age"]
@@ -52,18 +52,18 @@ func display_bio(bio: Dictionary) -> void:
 		$name_set.text = "Unknown"
 	
 	if bio.has("class"):
-		$status_set.text = "%s Class" % bio["class"]
+		$status_set.text = "%s class" % bio["class"]
 	else:
-		$status_set.text = "Unknown class"
+		$status_set.text = "Unknown"
 	
 	if bio.has("bio"):
 		$ibo_set.text = bio["bio"]
 	else:
-		$ibo_set.text = "You can not read who this is..."
+		$ibo_set.text = "You have not yet read this information..."
 	
 	if bio.has("status"):
 		$status_set2.text = bio["status"]
 	else:
-		$status_set2.text = "You can not read what they are doing..."
+		$status_set2.text = "You have not yet read this information..."
 	
 	emit_signal("new_bio")

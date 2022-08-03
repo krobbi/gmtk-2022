@@ -15,9 +15,11 @@ func _ready() -> void:
 	noise.period = 4.0
 	noise.octaves = 2
 	EventBus.safe_connect("shake_camera_request", self, "shake")
+	EventBus.safe_connect("move_camera_request", self, "move_camera")
 
 
 func _exit_tree() -> void:
+	EventBus.safe_disconnect("move_camera_request", self, "move_camera")
 	EventBus.safe_disconnect("shake_camera_request", self, "shake")
 
 
@@ -36,3 +38,10 @@ func _process(delta: float) -> void:
 
 func shake(amount: float) -> void:
 	trauma = min(1.0, trauma + amount)
+
+
+func move_camera(height: float) -> void:
+	if GameData.setting_screenShake:
+		position.y = height
+	else:
+		position.y = 540.0

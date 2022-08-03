@@ -1,0 +1,9 @@
+[gd_resource type="Theme" load_steps=2 format=2]
+
+[sub_resource type="StyleBoxEmpty" id=1]
+
+[resource]
+Button/colors/font_color_focus = Color( 0.890196, 0.552941, 0.815686, 1 )
+Button/colors/font_color_hover = Color( 0.890196, 0.552941, 0.815686, 1 )
+Button/colors/font_color_pressed = Color( 0.890196, 0.552941, 0.815686, 1 )
+Button/styles/focus = SubResource( 1 )

@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://scenes/main_menu_braches.gd" type="Script" id=1]
-[ext_resource path="res://resources/fonts/font_disclaimer.tres" type="DynamicFont" id=2]
+[ext_resource path="res://scenes/disclaimer/disclaimer.gd" type="Script" id=1]
+[ext_resource path="res://resources/fonts/font_64.tres" type="DynamicFont" id=2]
 
 [node name="Disclaimer" type="Control"]
 anchor_right = 1.0
@@ -14,7 +14,6 @@ __meta__ = {
 [node name="Timer" type="Timer" parent="."]
 wait_time = 5.0
 one_shot = true
-autostart = true
 
 [node name="ColorRect" type="ColorRect" parent="."]
 anchor_right = 1.0
@@ -42,4 +41,4 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[connection signal="timeout" from="Timer" to="." method="_on_back_pressed"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

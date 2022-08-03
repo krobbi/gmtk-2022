@@ -1,40 +1,63 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://resources/textures/tutorial_page.png" type="Texture" id=1]
 [ext_resource path="res://scenes/main_menu_braches.gd" type="Script" id=2]
 [ext_resource path="res://resources/textures/back.png" type="Texture" id=3]
-[ext_resource path="res://resources/textures/tutorial.png" type="Texture" id=4]
+[ext_resource path="res://resources/fonts/font_128.tres" type="DynamicFont" id=4]
 
-[sub_resource type="Gradient" id=1]
-colors = PoolColorArray( 0, 0, 0, 1, 0, 0, 0, 1 )
-
-[sub_resource type="GradientTexture" id=2]
-gradient = SubResource( 1 )
-
-[node name="Node2D" type="Node2D"]
+[node name="Tutorial" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
 script = ExtResource( 2 )
+__meta__ = {
+"_edit_lock_": true
+}
 
-[node name="Sprite2" type="Sprite" parent="."]
-position = Vector2( 939, 556 )
-scale = Vector2( 1.16162, 1124.5 )
-texture = SubResource( 2 )
+[node name="ColorRect" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_lock_": true
+}
 
-[node name="Sprite" type="Sprite" parent="."]
-position = Vector2( 963.389, 583.5 )
-scale = Vector2( 0.606111, 0.606111 )
+[node name="Page" type="TextureRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -88.0
+margin_top = 88.0
+margin_right = 88.0
+margin_bottom = 104.0
 texture = ExtResource( 1 )
+expand = true
+stretch_mode = 5
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Title" type="Label" parent="."]
+margin_left = 16.0
+margin_top = 8.0
+margin_right = 385.0
+margin_bottom = 171.0
+custom_fonts/font = ExtResource( 4 )
+text = "Tutorial"
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="back" type="TextureButton" parent="."]
-margin_left = 7.0
-margin_top = 975.0
-margin_right = 223.0
-margin_bottom = 1073.0
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 16.0
+margin_top = -112.0
+margin_right = 232.0
+margin_bottom = -14.0
 rect_pivot_offset = Vector2( 133, -941 )
 mouse_default_cursor_shape = 2
 texture_normal = ExtResource( 3 )
-
-[node name="title" type="Sprite" parent="."]
-position = Vector2( 179, 54 )
-texture = ExtResource( 4 )
+__meta__ = {
+"_edit_lock_": true
+}
 
 [connection signal="pressed" from="back" to="." method="_on_back_pressed"]

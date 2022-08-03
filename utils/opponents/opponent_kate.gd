@@ -13,9 +13,9 @@ func _get_bio(_night_number: int, round_number: int) -> String:
 		1:
 			return "$Kate,18,Middle"
 		2:
-			return "She is visibly uncomfortable and doesn't want to be here."
+			return "Visibly uncomfortable and doesn't want to be here."
 		3:
-			return "She is trying to earn money to pay for a life-saving surgery that her insurance won't cover."
+			return "She's trying to earn money to pay for a life-saving surgery that her insurance won't cover."
 	
 	return "Kate is wondering why this bugged message appears."
 
@@ -30,5 +30,5 @@ func _get_ending() -> Array:
 	else:
 		return [
 			"Unable to make the money she needed, Kate did not live to see the next month.",
-			"Her family and friends miss her daily, and wish they could have done more to support her in her time of need."
+			"Her family and friends miss her dearly, and wish they could have done more to support her in her time of need."
 		]

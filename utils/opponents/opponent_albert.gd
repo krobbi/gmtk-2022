@@ -31,21 +31,21 @@ func _get_bio(night_number: int, round_number: int) -> String:
 				3:
 					return "The mafia is threatening to kill his brother if he does not pay up tonight."
 		2:
-			return "Awash with both relief and worry. The mafia seem interested in his gambling habits and now have his infant son for more leverage."
+			return "He is awash with relief and worry. The mafia are interested in his gambling habits and now have his infant son for more leverage."
 		3:
-			return "His fantastic results have led to the mafia relying on him to gamble their own money. Albert, while nervous, is filled with unmistakable confidence."
+			return "His fantastic results have led to the mafia relying on him to gamble their own money. Albert is nervous, but filled with unmistakable confidence."
 		4:
 			if balance >= 6:
 				return "His confidence has swelled to new levels. He has earned the trust of his former tormentors."
 			else:
-				return "Some of his nervousness has returned. He seems to need a lucky break."
+				return "Some of his nervousness has returned. He needs a lucky break."
 		5:
 			if balance >= 8:
-				return "Despite rolling in cash, he seems nervous tonight and you can't get a sense for why."
+				return "Despite rolling in cash, he is nervous tonight, but you can't get a sense for why."
 			elif balance >= 4 and balance <= 7:
 				return "He is well dressed and clearly pampered. He is quickly settling into the new life he has found for himself."
 			else:
-				return "Once again has a nervous energy about him. Dedicated to making his patrons money out of fear."
+				return "He once again has a nervous energy about him. He is dedicated to making his bosses money out of fear."
 	
 	return "Albert's not sure what he's doing here, it's probably a bug."
 
@@ -73,6 +73,13 @@ func _get_ending() -> Array:
 			"Instead, he has taken quite nicely into the business of kidnapping."
 		]
 	elif balance >= 8:
-		return ["Albert's constant winnings and the mafia's explosion of wealth led to an investigation into the family opening. After his failure to lose cash, a tactical sting was performed, several key members of the mafia were killed in this event, including Albert."]
+		return [
+			"Albert's constant winnings and the mafia's explosion of wealth led to an investigation into the family opening.",
+			"After his failure to lose cash, a tactical sting was performed.",
+			"Several key members of the mafia were killed in this event, including Albert."
+		]
 	else:
-		return ["Albert continued to meet the mafia's demands, even managing to ditch some of the money he had earned when rumours started spreading of a police investigation into their finances. Albert has continued to curry favour in this organisation and has claimed the local title of 'king of the casino'."]
+		return [
+			"Albert continued to meet the mafia's demands, even ditching some of the money he had earned when rumours started spreading of a police investigation.",
+			"Albert has continued to curry favour in his organisation and has claimed the local title 'King of the Casino.'"
+		]

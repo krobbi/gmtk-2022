@@ -19,7 +19,7 @@ const ROLL_LIFT_MAX: float = 12.0
 const WALL_POWER_MIN: float = 0.9
 const WALL_POWER_MAX: float = 1.2
 const WALL_POWER_DECAY: float = 0.05
-const SHAKE_FACTOR: float = 25000.0
+const SHAKE_FACTOR: float = 23000.0
 
 var state: int = State.IDLE
 var height: float = 0.0

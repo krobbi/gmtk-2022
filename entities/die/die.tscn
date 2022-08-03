@@ -27,6 +27,7 @@ one_shot = true
 anims/spawn = ExtResource( 4 )
 
 [node name="ClackPlayer" type="AudioStreamPlayer2D" parent="."]
+bus = "Clacks"
 
 [node name="Shadow" type="Sprite" parent="."]
 modulate = Color( 1, 1, 1, 0.501961 )

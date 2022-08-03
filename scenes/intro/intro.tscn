@@ -1,26 +1,35 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://resources/fonts/font_64.tres" type="DynamicFont" id=1]
-[ext_resource path="res://resources/fonts/font_big.tres" type="DynamicFont" id=2]
+[ext_resource path="res://resources/fonts/font_48.tres" type="DynamicFont" id=1]
+[ext_resource path="res://resources/fonts/font_256.tres" type="DynamicFont" id=2]
 [ext_resource path="res://scenes/intro/intro.gd" type="Script" id=3]
+[ext_resource path="res://resources/themes/option_buttons.tres" type="Theme" id=4]
 
-[sub_resource type="GradientTexture" id=1]
-
-[node name="Node2D" type="Node2D"]
+[node name="Intro" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
 script = ExtResource( 3 )
+__meta__ = {
+"_edit_lock_": true
+}
 
-[node name="Sprite" type="Sprite" parent="."]
-position = Vector2( 1158.75, 541 )
-scale = Vector2( 1.1687, 1105.5 )
-texture = SubResource( 1 )
+[node name="ColorRect" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.0431373, 0.00392157, 0.0313726, 1 )
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="Label" type="Label" parent="."]
-margin_left = 93.0
-margin_top = 64.0
-margin_right = 1825.0
-margin_bottom = 379.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 256.0
+margin_top = 128.0
+margin_right = -256.0
+margin_bottom = -128.0
 custom_fonts/font = ExtResource( 1 )
-text = "Fey are mysterious beings, with equally mysterious powers, you are one of these creatures. Blessed with the ability to manipulate odds you were captured and bound to a casino, with the instruction to make them money for your freedom.
+text = "Fey are mysterious beings with equally mysterious powers. You are one of these creatures. Blessed with the ability to manipulate odds, you were captured and bound to a casino with the instruction to make them money for your freedom.
 
 Although things may not be so easy, another one of your abilities lets you learn about the past and thoughts of humans you spend time near. Many patrons of this casino have situations that force them to be there, what will you do?
 "
@@ -28,12 +37,20 @@ align = 1
 autowrap = true
 
 [node name="Button" type="Button" parent="."]
-margin_left = 713.0
-margin_top = 491.0
-margin_right = 1221.0
-margin_bottom = 821.0
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -254.0
+margin_top = -458.0
+margin_right = 254.0
+margin_bottom = -128.0
+theme = ExtResource( 4 )
 custom_fonts/font = ExtResource( 2 )
 text = "Start"
 flat = true
+__meta__ = {
+"_edit_lock_": true
+}
 
 [connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]

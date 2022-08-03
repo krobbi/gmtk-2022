@@ -105,7 +105,6 @@ func get_ai_choice() -> bool:
 # Begins a new night:
 func begin_night(night_number_val: int) -> void:
 	night_number = night_number_val
-	night_number = GameData.night
 	mana = 20
 	mana_bar.changeMana(mana)
 	opponent_queue = get_opponent_queue()
@@ -205,6 +204,7 @@ func _on_odds_selected(new_odds: int) -> void:
 	floating_number_spawner.odds = odds
 	round_count -= 1
 	emit_signal("round_count_changed", round_count)
+	EventBus.emit_signal("move_camera_request", 800.0)
 	die_spawner.spawn_dice(GameData.setting_quickRoll)
 
 
@@ -214,6 +214,7 @@ func _on_number_rolled(new_number: int) -> void:
 		die_spawner.spawn_dice(GameData.setting_quickRoll) # Reroll:
 		return
 	
+	EventBus.emit_signal("move_camera_request", 540.0)
 	var was_higher: bool = new_number > number
 	number = new_number
 	emit_signal("number_changed", number)

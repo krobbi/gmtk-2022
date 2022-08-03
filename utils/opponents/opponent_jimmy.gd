@@ -22,13 +22,13 @@ func _get_bio(night_number: int, round_number: int) -> String:
 				2:
 					return "Here on his honeymoon with his husband Johnny."
 				3:
-					return "Can no longer affort to travel home thanks to Johnny's losses. Here to make up the lost savings."
+					return "He can no longer afford to travel home thanks to Johnny's losses. He's here to make up the lost savings."
 		2:
-			return "Frustrated with Johnny for forcing him into this."
+			return "He's frustrated with Johnny for forcing him into this."
 		3:
-			return "Deeply concerned about being able to make back the money."
+			return "He's deeply concerned about being able to make back the money."
 		4:
-			return "It's the last night of his honeymoon, and the last chance to make back the money."
+			return "It's the last night of his honeymoon, and his last chance to make back the money."
 	
 	return "Jimmy doesn't know what he's doing here, it's probably a bug."
 
@@ -43,18 +43,18 @@ func _get_ending() -> Array:
 	match balance:
 		1:
 			return [
-				"Thanks to Jimmy's winnings he manages to return home with Johnny with money to spare, but their marriage is off to a rocky start.",
-				"Eventually, they get over the incident, and Jimmy admits he had fun despite being forced to play."
+				"Thanks to Jimmy's winnings he managed to return home with Johnny and money to spare, but their marriage was off to a rocky start.",
+				"Eventually, they got over the incident. Jimmy admits he had fun, despite being forced to play."
 			]
 		0:
 			return [
-				"While Jimmy managed to scrape back the lost money, it was far closer than he was comfortable with.",
+				"Jimmy managed to scrape back the lost money, but it was far closer than he was comfortable with.",
 				"The relationship eventually recovered, but the incident left a long lasting strain on it."
 			]
 		-1:
 			return [
 				"Jimmy hitchhiked home with Johnny having been unable to recuperate his losses.",
-				"The marriage did not last a year from the proposal."
+				"Their marriage did not last a year from the proposal."
 			]
 	
 	return ["Jimmy somehow found a bugged ending."]

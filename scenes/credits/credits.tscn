@@ -1,33 +1,80 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://resources/textures/test_table.png" type="Texture" id=1]
+[ext_resource path="res://resources/textures/table.png" type="Texture" id=1]
 [ext_resource path="res://scenes/main_menu_braches.gd" type="Script" id=2]
 [ext_resource path="res://resources/textures/back.png" type="Texture" id=3]
-[ext_resource path="res://resources/textures/credits.png" type="Texture" id=4]
+[ext_resource path="res://resources/fonts/font_128.tres" type="DynamicFont" id=4]
 [ext_resource path="res://resources/textures/credits-body.png" type="Texture" id=5]
+[ext_resource path="res://resources/fonts/font_64.tres" type="DynamicFont" id=6]
 
-[node name="Node2D" type="Node2D"]
+[node name="Credits" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
 script = ExtResource( 2 )
+__meta__ = {
+"_edit_lock_": true
+}
 
-[node name="Sprite" type="Sprite" parent="."]
-position = Vector2( 960, 540 )
+[node name="Background" type="TextureRect" parent="."]
+margin_left = -40.0
+margin_top = 226.0
+margin_right = 1960.0
+margin_bottom = 1373.0
 texture = ExtResource( 1 )
+__meta__ = {
+"_edit_lock_": true
+}
 
-[node name="Credits-body" type="Sprite" parent="Sprite"]
-position = Vector2( -459, -37 )
-scale = Vector2( 1.56813, 1.56813 )
+[node name="Title" type="Label" parent="."]
+margin_left = 16.0
+margin_top = 8.0
+margin_right = 349.0
+margin_bottom = 171.0
+custom_fonts/font = ExtResource( 4 )
+text = "Credits"
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CreditsBody" type="TextureRect" parent="."]
+margin_left = 64.0
+margin_top = 176.0
+margin_right = 690.0
+margin_bottom = 631.0
+rect_scale = Vector2( 1.5, 1.5 )
 texture = ExtResource( 5 )
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="back" type="TextureButton" parent="."]
-margin_left = 7.0
-margin_top = 975.0
-margin_right = 223.0
-margin_bottom = 1073.0
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 160.0
+margin_top = -184.0
+margin_right = 376.0
+margin_bottom = -86.0
 mouse_default_cursor_shape = 2
 texture_normal = ExtResource( 3 )
+__meta__ = {
+"_edit_lock_": true
+}
 
-[node name="title" type="Sprite" parent="."]
-position = Vector2( 165, 51 )
-texture = ExtResource( 4 )
+[node name="VersionLabel" type="Label" parent="."]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -408.0
+margin_top = -168.0
+margin_right = -152.0
+margin_bottom = -72.0
+custom_fonts/font = ExtResource( 6 )
+text = "v1.1.0"
+align = 2
+valign = 2
+__meta__ = {
+"_edit_lock_": true
+}
 
 [connection signal="pressed" from="back" to="." method="_on_back_pressed"]

@@ -36,7 +36,7 @@ func spawn_dice(is_fast: bool = false) -> void:
 	for i in range(4):
 		var die: Die = DieScene.instance()
 		dice.push_back(die)
-		die.position = Vector2(480.0 + float(i * 320), 540.0)
+		die.position = Vector2(480.0 + float(i * 320), 800.0)
 		add_child(die)
 	
 	if is_fast:

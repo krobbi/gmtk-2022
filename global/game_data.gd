@@ -1,15 +1,22 @@
 extends Node
 
+const SETTINGS_PATH: String = "user://options.cfg"
 const TARGETS: Array = [2, 4, 6, 8, 10]
 
 var night: int = 0
 var house_balance: int = 0
 var is_on_target: bool = true
 
-#Settigs
+# Settings:
+var settings_data: Dictionary = {
+	"screen_shake": true,
+	"quick_roll": false,
+	"music": true,
+}
+
 var setting_screenShake: bool = true
 var setting_quickRoll: bool = false
-var setting_music: bool = true setget set_setting_music
+var setting_music: bool = false setget set_setting_music
 
 var opponents: Dictionary = {
 	"sue": load("res://utils/opponents/opponent_sue.gd").new(),
@@ -40,6 +47,9 @@ func reset() -> void:
 
 
 func set_setting_music(value: bool) -> void:
+	if setting_music == value:
+		return
+	
 	setting_music = value
 	
 	if setting_music:
@@ -102,3 +112,40 @@ func update_bio(key: String, night_number: int, round_number: int) -> void:
 		bios[key]["bio"] = message
 	else:
 		bios[key]["status"] = message
+
+
+# Save the settings:
+func save_settings() -> void:
+	settings_data.screen_shake = setting_screenShake
+	settings_data.quick_roll = setting_quickRoll
+	settings_data.music = setting_music
+	
+	var file: ConfigFile = ConfigFile.new()
+	
+	for key in settings_data:
+		file.set_value("options", key, settings_data[key])
+	
+	if file.save(SETTINGS_PATH) != OK:
+		print("Failed to save settings from '%s'!" % SETTINGS_PATH)
+
+
+# Load the settings:
+func load_settings() -> void:
+	var dir: Directory = Directory.new()
+	
+	if not dir.file_exists(SETTINGS_PATH):
+		return # No settings file, but this is a valid state.
+	
+	var file: ConfigFile = ConfigFile.new()
+	
+	if file.load(SETTINGS_PATH) != OK:
+		print("Failed to load settings from '%s'!" % SETTINGS_PATH)
+		return
+	
+	for key in settings_data:
+		if file.has_section_key("options", key):
+			settings_data[key] = file.get_value("options", key, settings_data[key])
+	
+	setting_screenShake = settings_data.screen_shake
+	setting_quickRoll = settings_data.quick_roll
+	set_setting_music(settings_data.music)

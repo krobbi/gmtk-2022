@@ -3,5 +3,5 @@
 [ext_resource path="res://resources/fonts/edu_sa_beginner_medium.ttf" type="DynamicFontData" id=1]
 
 [resource]
-size = 48
+size = 128
 font_data = ExtResource( 1 )

@@ -9,72 +9,105 @@
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 4 )
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="total" type="Control" parent="."]
 margin_left = -2.0
 margin_top = 137.0
 margin_right = 38.0
 margin_bottom = 177.0
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="player_count" type="Control" parent="."]
 margin_left = 8.0
 margin_top = 147.0
 margin_right = 48.0
 margin_bottom = 187.0
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="1" type="Sprite" parent="player_count"]
 position = Vector2( 33, 12 )
 scale = Vector2( 3, 3 )
 texture = ExtResource( 1 )
 offset = Vector2( -8, 3 )
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="2" type="Sprite" parent="player_count"]
 position = Vector2( 69, 12 )
 scale = Vector2( 3, 3 )
 texture = ExtResource( 1 )
 offset = Vector2( -8, 3 )
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="3" type="Sprite" parent="player_count"]
 position = Vector2( 105, 12 )
 scale = Vector2( 3, 3 )
 texture = ExtResource( 1 )
 offset = Vector2( -8, 3 )
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="4" type="Sprite" parent="player_count"]
 position = Vector2( 141, 12 )
 scale = Vector2( 3, 3 )
 texture = ExtResource( 1 )
 offset = Vector2( -8, 3 )
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="5" type="Sprite" parent="player_count"]
 position = Vector2( 177, 12 )
 scale = Vector2( 3, 3 )
 texture = ExtResource( 1 )
 offset = Vector2( -8, 3 )
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="6" type="Sprite" parent="player_count"]
 position = Vector2( 212.5, 12 )
 scale = Vector2( 3, 3 )
 texture = ExtResource( 1 )
 offset = Vector2( -8, 3 )
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="Label_BAD" type="Label" parent="."]
-margin_left = 2.0
+margin_left = -192.0
 margin_top = -27.0
 margin_right = 216.0
 margin_bottom = 136.0
 custom_colors/font_color = Color( 0.890196, 0.552941, 0.815686, 1 )
 custom_fonts/font = ExtResource( 2 )
-text = "0"
+text = "0/0"
 align = 2
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="Label_GOOD" type="Label" parent="."]
 visible = false
-margin_left = 2.0
+margin_left = -192.0
 margin_top = -27.0
 margin_right = 216.0
 margin_bottom = 136.0
 custom_colors/font_color = Color( 0.890196, 0.552941, 0.815686, 1 )
 custom_fonts/font = ExtResource( 3 )
-text = "0"
+text = "0/0"
 align = 2
+__meta__ = {
+"_edit_lock_": true
+}
