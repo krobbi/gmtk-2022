@@ -75,10 +75,12 @@ Creative Commons CC BY-SA 3.0: https://creativecommons.org/licenses/by-sa/3.0
 To export the game, use Godot Engine `3.4.4`. Make sure you have the following
 empty directories inside the Godot project:
 
+* `res://ignore/builds/`
 * `res://ignore/builds/web/`
 * `res://ignore/builds/windows/`
-* `res://ignore/builds/mac/`
 * `res://ignore/builds/linux/`
+
+The macOS build will be inside a zip file at `res://ignore/builds/mac.zip`.
 
 An empty `.gdignore` file should also be included in `res://ignore/` to prevent
 Godot Engine from including resources from here in the game.

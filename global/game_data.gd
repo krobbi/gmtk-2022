@@ -114,11 +114,23 @@ func update_bio(key: String, night_number: int, round_number: int) -> void:
 		bios[key]["status"] = message
 
 
-# Save the settings:
-func save_settings() -> void:
+# Packs the current settings into the settings data:
+func pack_settings() -> void:
 	settings_data.screen_shake = setting_screenShake
 	settings_data.quick_roll = setting_quickRoll
 	settings_data.music = setting_music
+
+
+# Unpacks the settings data into the current settings:
+func unpack_settings() -> void:
+	setting_screenShake = settings_data.screen_shake
+	setting_quickRoll = settings_data.quick_roll
+	set_setting_music(settings_data.music)
+
+
+# Saves the settings:
+func save_settings() -> void:
+	pack_settings()
 	
 	var file: ConfigFile = ConfigFile.new()
 	
@@ -129,16 +141,18 @@ func save_settings() -> void:
 		print("Failed to save settings from '%s'!" % SETTINGS_PATH)
 
 
-# Load the settings:
+# Loads the settings:
 func load_settings() -> void:
 	var dir: Directory = Directory.new()
 	
 	if not dir.file_exists(SETTINGS_PATH):
+		unpack_settings()
 		return # No settings file, but this is a valid state.
 	
 	var file: ConfigFile = ConfigFile.new()
 	
 	if file.load(SETTINGS_PATH) != OK:
+		unpack_settings()
 		print("Failed to load settings from '%s'!" % SETTINGS_PATH)
 		return
 	
@@ -146,6 +160,4 @@ func load_settings() -> void:
 		if file.has_section_key("options", key):
 			settings_data[key] = file.get_value("options", key, settings_data[key])
 	
-	setting_screenShake = settings_data.screen_shake
-	setting_quickRoll = settings_data.quick_roll
-	set_setting_music(settings_data.music)
+	unpack_settings()
