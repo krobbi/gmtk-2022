@@ -1,0 +1,2 @@
+# Prevent Linguist from erroneously detecting GDScript files as GAP files:
+*.gd linguist-language=GDScript
