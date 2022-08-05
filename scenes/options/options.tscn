@@ -6,7 +6,7 @@
 [ext_resource path="res://resources/fonts/font_128.tres" type="DynamicFont" id=4]
 [ext_resource path="res://resources/textures/options_menu.png" type="Texture" id=5]
 [ext_resource path="res://resources/textures/die.png" type="Texture" id=6]
-[ext_resource path="res://scenes/options/menuHandler.gd" type="Script" id=7]
+[ext_resource path="res://scenes/options/menu_handler.gd" type="Script" id=7]
 
 [node name="Options" type="Control"]
 anchor_right = 1.0
@@ -52,21 +52,21 @@ __meta__ = {
 "_editor_description_": ""
 }
 
-[node name="menuHandler" type="Node2D" parent="."]
+[node name="MenuHandler" type="Node2D" parent="."]
 position = Vector2( 16, 32 )
 script = ExtResource( 7 )
 __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="OptionsMenu" type="Sprite" parent="menuHandler"]
+[node name="OptionsMenu" type="Sprite" parent="MenuHandler"]
 position = Vector2( 320, 379 )
 texture = ExtResource( 5 )
 __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="screenshake" type="Sprite" parent="menuHandler"]
+[node name="screenshake" type="Sprite" parent="MenuHandler"]
 visible = false
 position = Vector2( 436, 222 )
 scale = Vector2( 0.585938, 0.585938 )
@@ -76,7 +76,7 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Fastroll" type="Sprite" parent="menuHandler"]
+[node name="Fastroll" type="Sprite" parent="MenuHandler"]
 visible = false
 position = Vector2( 335, 323 )
 scale = Vector2( 0.585938, 0.585938 )
@@ -86,7 +86,7 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Music" type="Sprite" parent="menuHandler"]
+[node name="Music" type="Sprite" parent="MenuHandler"]
 visible = false
 position = Vector2( 273, 426 )
 scale = Vector2( 0.585938, 0.585938 )
@@ -96,7 +96,7 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="ScreenshakeButton" type="TextureButton" parent="menuHandler"]
+[node name="ScreenshakeButton" type="TextureButton" parent="MenuHandler"]
 margin_left = 8.85156
 margin_top = 169.852
 margin_right = 816.852
@@ -108,7 +108,7 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="FastRollButton" type="TextureButton" parent="menuHandler"]
+[node name="FastRollButton" type="TextureButton" parent="MenuHandler"]
 margin_left = 10.0
 margin_top = 270.0
 margin_right = 385.0
@@ -120,7 +120,7 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="MusicButton" type="TextureButton" parent="menuHandler"]
+[node name="MusicButton" type="TextureButton" parent="MenuHandler"]
 margin_left = 5.0
 margin_top = 372.0
 margin_right = 338.0
@@ -133,6 +133,6 @@ __meta__ = {
 }
 
 [connection signal="pressed" from="BackButton" to="." method="_on_back_button_pressed"]
-[connection signal="pressed" from="menuHandler/ScreenshakeButton" to="menuHandler" method="_on_screenshake_button_pressed"]
-[connection signal="pressed" from="menuHandler/FastRollButton" to="menuHandler" method="_on_fastroll_button_pressed"]
-[connection signal="pressed" from="menuHandler/MusicButton" to="menuHandler" method="_on_music_button_pressed"]
+[connection signal="pressed" from="MenuHandler/ScreenshakeButton" to="MenuHandler" method="_on_screenshake_button_pressed"]
+[connection signal="pressed" from="MenuHandler/FastRollButton" to="MenuHandler" method="_on_fastroll_button_pressed"]
+[connection signal="pressed" from="MenuHandler/MusicButton" to="MenuHandler" method="_on_music_button_pressed"]

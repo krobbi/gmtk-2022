@@ -28,7 +28,7 @@ __meta__ = {
 [node name="GameManager" parent="." instance=ExtResource( 6 )]
 die_spawner_path = NodePath("../DieSpawner")
 floating_number_spawner_path = NodePath("../FloatingNumberSpawner")
-mana_bar_path = NodePath("../GUI/Control")
+mana_bar_path = NodePath("../GUI/ManaBar")
 odds_selector_path = NodePath("../GUI/oddsSelector")
 player_gui_path = NodePath("../GUI/PlayerGui")
 
@@ -83,7 +83,7 @@ margin_top = 24.0
 margin_right = 24.0
 margin_bottom = 24.0
 
-[node name="Control" parent="GUI" instance=ExtResource( 8 )]
+[node name="ManaBar" parent="GUI" instance=ExtResource( 8 )]
 margin_left = 8.0
 margin_top = 1000.0
 margin_right = 8.0
