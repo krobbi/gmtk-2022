@@ -1,6 +1,7 @@
 # The House Always Wins
-Copyright &copy; 2022 [Ruxaroh](https://github.com/ruxaroh),
-[Krobbizoid](https://github.com/krobbi).
+__Version `1.1.2`__ - Godot Engine version `3.5.1`.  
+__Copyright &copy; 2022 [Ruxaroh](https://github.com/ruxaroh),
+[Krobbizoid](https://github.com/krobbi).__
 
 # Contents
 1. [About](#about)
@@ -9,6 +10,8 @@ Copyright &copy; 2022 [Ruxaroh](https://github.com/ruxaroh),
 4. [Description](#description)
 5. [Credits](#credits)
 6. [Exporting](#exporting)
+   * [Exporting Versions 1.1.2 and Above](#exporting-versions-112-and-above)
+   * [Exporting Versions 1.1.1 and Below](#exporting-versions-111-and-below)
 
 # About
 The House Always Wins is a game originally created within 48 hours for the
@@ -72,6 +75,16 @@ https://soundcloud.com/ghostrifter-official/on-my-way
 Creative Commons CC BY-SA 3.0: https://creativecommons.org/licenses/by-sa/3.0
 
 # Exporting
+The steps for exporting the game depend on its version. Make sure you are
+following the correct instructions.
+
+## Exporting Versions 1.1.2 and Above
+For detailed instructions on exporting and distributing the latest versions of
+the game, see [builds/readme.md](./builds/readme.md).
+
+## Exporting Versions 1.1.1 and Below
+The following instructions only apply to game versions `1.1.1` and below.
+
 To export the game, use Godot Engine `3.4.4`. Make sure you have the following
 empty directories inside the Godot project:
 

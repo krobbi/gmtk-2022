@@ -18,6 +18,16 @@ data_*/
 *.TMP
 *.translation
 
+# Builds:
+builds/linux/*
+builds/mac/*
+builds/web/*
+builds/windows/*
+!builds/linux/.empty
+!builds/mac/.empty
+!builds/web/.empty
+!builds/windows/.empty
+
 # Ignore:
 ignore/*
 !ignore/.gdignore
