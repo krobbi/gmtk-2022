@@ -18,5 +18,7 @@ data_*/
 *.TMP
 *.translation
 
-# Ignore
+# Ignore:
 ignore/*
+!ignore/.gdignore
+!ignore/readme.md
